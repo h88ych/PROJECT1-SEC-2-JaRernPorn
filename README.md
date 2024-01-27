@@ -6,4 +6,5 @@
 65130500113 มัณฑนา คชรินทร์ <br>
 65130500120 อภิสรา ชลประสิทธิ์
 
-**Our project** : Chinese Vocab Application
+**Our project** : Chinese Vocab Application <br>
+:pushpin: https://www.figma.com/file/ouMBsDsGoVcC8MlF3sSfUe/Chinese-Vocab?type=design&node-id=5%3A81&mode=design&t=7tbNDhWAO3kqcPgi-1
