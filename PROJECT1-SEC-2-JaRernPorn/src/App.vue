@@ -72,8 +72,8 @@ const handleClickPlay=()=>{
     </div>
 
     <div class="allbox flex content-center justify-center">
-      <div class="boxes font-semibold text-black font-outfit flex flex-col ">
-        <div class="firstLine flex space-x-36 pb-10">
+      <div class="boxes font-semibold text-black font-outfit flex flex-col flex-wrap">
+        <div class="firstLine flex space-x-36 pb-10 ">
           <div class="fruits flex flex-col items-center">
             <div class="pic w-56 pb-2">
               <img src="./assets/categories/cate_fruits.png" alt="" class="hover:drop-shadow-lg" />
@@ -93,7 +93,8 @@ const handleClickPlay=()=>{
             <p class="text-xl">Colors</p>
           </div>
         </div>
-        <div class="secondLine flex flex space-x-36">
+
+        <div class="secondLine flex space-x-36 ">
           <div class="family flex flex-col items-center">
             <div class="pic w-56 pb-2">
               <img src="./assets/categories/cate_family.png" alt="" class="hover:drop-shadow-lg"/>
@@ -110,6 +111,10 @@ const handleClickPlay=()=>{
       </div>
     </div>
   </div>
+  </section>
+  
+  <section class="quiz">
+    
   </section>
   
 </template>
