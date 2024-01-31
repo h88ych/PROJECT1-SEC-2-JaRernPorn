@@ -1,14 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-<<<<<<< Updated upstream
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-    }
-  },
-  plugins: [],
-};
-=======
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     screens: {
@@ -27,7 +18,6 @@ export default {
         black: '#20201D'
       }
     },
->>>>>>> Stashed changes
 
     fontFamily: {
       Alkarta: ['Alkatra', 'system-ui'],
