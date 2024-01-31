@@ -6,7 +6,7 @@ export default {
       sm: '480px', //phone
       md: '768px',
       lg: '1024px',
-      xl: '1440px' //desktop
+      xl: '2560px' //desktop
     },
     extend: {
       colors: {
@@ -26,17 +26,21 @@ export default {
     },
     lineHeight: {
       title: '1.10',
-      list: '2.5'
+      list: '2.3',
+      listMobile: '2'
     },
     // padding: {
     //   title: '100px'
     // },
     letterSpacing: {
-      title: '2.8px'
+      title: '2.8px',
+      subtitle: '1.5px'
     }
   },
   backgroundImage: {
     'chinese-frame': "url('../assets/chinese-frame.png')"
   },
-  plugins: [[require('daisyui')]]
+  plugins: [
+    [require('daisyui'), require('tailwind-scrollbar')({ nocompatible: true })]
+  ]
 }
