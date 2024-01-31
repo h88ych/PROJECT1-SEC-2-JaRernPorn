@@ -16,7 +16,9 @@ export default {
         black: "#20201D",
       },
       fontSize: {
-        "title-size": "110px",
+        "title-size": "118px",
+        "sm-title-size": "100px",
+        "mobile-title-size": "80px",
         "sub-title-size": "14px",
       },
       lineHeight: {
@@ -26,12 +28,16 @@ export default {
         title: "42px",
       },
       letterSpacing: {
-        "sub-title" : "2.8px",
+        "sub-title": "2.8px",
       },
-    },backgroundImage: {
-      'chinese-frame' : "url('../assets/chinese-frame.png')",
-    }
+      screens: {
+        mobile: '320px',
+        sm: '480px', //phone
+        md: '768px',
+        lg: '1024px',
+        xl: '1440px' //desktop
+      }
+    },
   },
   plugins: [],
 };
-
