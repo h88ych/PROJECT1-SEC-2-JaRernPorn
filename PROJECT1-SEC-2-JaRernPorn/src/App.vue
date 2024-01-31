@@ -1,125 +1,32 @@
-<script setup>
-import { ref } from 'vue';
-
-const showHomePage=ref(true)
-const showCategoryPage=ref(false)
-
-const handleClickPlay=()=>{
-  showCategoryPage.value=!showCategoryPage.value
-  showHomePage.value=!showHomePage.value
-}
-</script>
+<script setup></script>
 
 <template>
-  <section class="homePage" v-if="showHomePage">
-    <div class="h-screen bg-main-bgColor p-5">
+  <div id="body" class="bg-main-bgColor w-full h-screen p-5 relative">
     <div
-      class="border-double border-8 border-title box-border h-full w-full flex flex-col"
+      class="border-double border-8 border-title box-border w-full h-full relative text-center"
     >
       <img
         class="w-16 absolute right-12 top-12"
-        src="./assets/home-page/setting.png"
-        alt=""
+        src="./assets/settingButton.png"
+        alt="Setting button"
       />
-      <div class="logo-title text-center text-title text-title-size pt-title">
-        <div class="font-alkatra font-medium leading-title">HELLO !</div>
-        <div class="font-alkatra font-medium leading-title">CHINESE</div>
-      </div>
-      <div class="sub-title text-center">
-        <p class="font-outfit tracking-sub-title text-sub-title-size">
-          LET'S PRACTICE YOUR CHINESE VOCABULARY
-        </p>
-      </div>
-
-      <div id="home-page-button">
-        <div id="play-button" class="flex justify-center pt-14" >
-          <img
-            class="w-72 relative"
-            src="./assets/home-page/red-bible-button.png"
-            alt="play-button"
-            @click="handleClickPlay"
-          />
-          <p class="absolute font-outfit font-normal text-white text-4xl p-5" @click="handleClickPlay">
-            PLAY
-          </p>
-        </div>
-        <div id="HTP-button" class="flex justify-center pt-6">
-          <img
-            class="w-72 relative"
-            src="./assets/home-page/red-bible-button.png"
-            alt="HTP-button"
-          />
-          <p class="absolute font-outfit font-normal text-white text-2xl p-6">
-            HOW TO PLAY
-          </p>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <section class="category" v-if="showCategoryPage">
-    <div class="m-10">
-    <div class="header flex justify-between">
-      <div
-        class="categories text-title font-semibold font-outfit text-5xl justify-center items-center"
-      >
-        Categories
-      </div>
-      <div>
-        <img src="./assets/categories/setting.png" alt="" class="w-16 hover:scale-125" />
-      </div>
-    </div>
-
-    <div class="allbox flex content-center justify-center">
-      <div class="boxes font-semibold text-black font-outfit flex flex-col flex-wrap">
-        <div class="firstLine flex space-x-36 pb-10 ">
-          <div class="fruits flex flex-col items-center">
-            <div class="pic w-56 pb-2">
-              <img src="./assets/categories/cate_fruits.png" alt="" class="hover:drop-shadow-lg" />
-            </div>
-            <p class="text-xl">Fruits</p>
-          </div>
-          <div class="animals flex flex-col items-center">
-            <div class="pic w-56 pb-2">
-              <img src="./assets/categories/cate_animals.png" alt="" class="hover:drop-shadow-lg"/>
-            </div>
-            <p class="text-xl">Animals</p>
-          </div>
-          <div class="colors flex flex-col items-center">
-            <div class="pic w-56 pb-2">
-              <img src="./assets/categories/cate_colors.png" alt="" class="hover:drop-shadow-lg"/>
-            </div>
-            <p class="text-xl">Colors</p>
-          </div>
-        </div>
-
-        <div class="secondLine flex space-x-36 ">
-          <div class="family flex flex-col items-center">
-            <div class="pic w-56 pb-2">
-              <img src="./assets/categories/cate_family.png" alt="" class="hover:drop-shadow-lg"/>
-            </div>
-            <p class="text-xl">Family</p>
-          </div>
-          <div class="numbers flex flex-col items-center">
-            <div class="pic w-56 pb-2">
-              <img src="./assets/categories/cate_numbers.png" alt="" class="hover:drop-shadow-lg"/>
-            </div>
-            <p class="text-xl">Numbers</p>
-          </div>
+      <div class="text-center relative translate-middle text-white">
+        <img
+          src="./assets/complimentFrame.png"
+          alt="Picture that said Excellent!"
+          class="mx-auto my-60"
+        />
+        <div
+          class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+        >
+          <h1 class="uppercase text-compliment-size font-alkatra">
+            excellent!
+          </h1>
+          <p class="text-resultButton-size font-outfit">Let’s See The Result</p>
         </div>
       </div>
     </div>
   </div>
-  </section>
-  
-  <section class="quiz">
-    
-  </section>
-  
 </template>
 
- 
-<style scoped>
-
-</style>
+<style scoped></style>
