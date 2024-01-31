@@ -1,6 +1,7 @@
 <script setup></script>
 
 <template>
+  <!-- HomePage -->
   <div class="h-screen bg-main-bgColor p-5">
     <div class="border-double border-8 border-title box-border h-full w-full">
       <div
@@ -33,6 +34,7 @@
       </div>
     </div>
   </div>
+  <!-- CategoryPage -->
 </template>
 
 <style scoped></style>
