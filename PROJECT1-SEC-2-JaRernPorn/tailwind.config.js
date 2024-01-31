@@ -28,6 +28,13 @@ export default {
       letterSpacing: {
         "sub-title" : "2.8px",
       },
+      screens:{
+        mobile:'320px',
+        sm:'480px', //phone
+        md:'768px',
+        lg:'1024px',
+        xl:'1440px' //desktop
+      }
     },backgroundImage: {
       'chinese-frame' : "url('../assets/chinese-frame.png')",
     }
