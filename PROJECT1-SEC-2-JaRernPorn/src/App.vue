@@ -14,7 +14,7 @@
                     <h1 class="text-title text-5xl font-outfit font-bold">Category: fruits</h1>
                 </div>
                 <div class="setting mr-4 absolute right-10 top-6 hover:scale-125">
-                    <img src="./assets/home-page/setting.png" alt="" class="w-12 hover:scale-110" />
+                    <img src="./assets/play-game/setting.png" alt="setting-img" class="w-12 hover:scale-110" />
                 </div>
             </div>
 
