@@ -5,11 +5,6 @@
     <div
       class="border-double border-8 border-title box-border w-full h-full relative text-center flex justify-center items-center"
     >
-      <img
-        class="w-16 absolute right-12 top-12"
-        src="./assets/settingButton.png"
-        alt="Setting button"
-      />
       <div class="text-center relative translate-middle text-white">
         <img
           src="./assets/complimentFrame.png"
