@@ -28,6 +28,12 @@ export default {
       },
       letterSpacing: {
         title: '2.8px'
+      },
+      screens: {
+        sm: '480px', //phone
+        md: '768px',
+        lg: '1024px',
+        xl: '2560px' //desktop
       }
     },
     backgroundImage: {
@@ -35,4 +41,4 @@ export default {
     }
   },
   plugins: []
-}
+};

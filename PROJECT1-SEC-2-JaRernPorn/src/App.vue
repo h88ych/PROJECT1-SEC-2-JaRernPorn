@@ -3,7 +3,7 @@
 <template>
   <div id="body" class="bg-main-bgColor w-full h-screen p-5 relative">
     <div
-      class="border-double border-8 border-title box-border w-full h-full relative text-center"
+      class="border-double border-8 border-title box-border w-full h-full relative text-center flex justify-center items-center"
     >
       <img
         class="w-16 absolute right-12 top-12"
@@ -19,10 +19,16 @@
         <div
           class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
         >
-          <h1 class="uppercase text-compliment-size font-alkatra">
+          <h1
+            class="uppercase text-4xl font-alkatra md:text-compliment-size sm:text-6xl xl:text-compliment-size"
+          >
             excellent!
           </h1>
-          <p class="text-resultButton-size font-outfit">Let’s See The Result</p>
+          <p
+            class="text-3xl font-outfit md:text-resultButton-size sm:text-2xl xl:text-compliment-size"
+          >
+            Let’s See The Result
+          </p>
         </div>
       </div>
     </div>
