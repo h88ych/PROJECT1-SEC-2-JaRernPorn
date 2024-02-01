@@ -25,7 +25,7 @@
             excellent!
           </h1>
           <p
-            class="text-3xl font-outfit md:text-resultButton-size sm:text-2xl xl:text-compliment-size"
+            class="text-2xl font-outfit md:text-resultButton-size sm:text-4xl xl:text-resultButton-size"
           >
             Let’s See The Result
           </p>
