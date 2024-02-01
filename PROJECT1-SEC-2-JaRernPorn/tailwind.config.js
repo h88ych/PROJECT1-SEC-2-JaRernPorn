@@ -41,5 +41,5 @@ export default {
       'chinese-frame': "url('../assets/chinese-frame.png')"
     }
   },
-  plugins: [require('daisyui')]
+  plugins: []
 }

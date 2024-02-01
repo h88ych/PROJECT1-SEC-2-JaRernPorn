@@ -10,7 +10,7 @@
           <img
             src="./assets/cancel.png"
             alt="setting button"
-            class="absolute right-4 top-5 w-8 md:w-14"
+            class="absolute right-4 top-5 w-5 sm:w-8"
           />
 
           <div
@@ -39,6 +39,4 @@
   </div>
 </template>
 
-<style scoped>
-/* Add your additional styling here */
-</style>
+<style scoped></style>
