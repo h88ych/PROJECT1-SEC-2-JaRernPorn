@@ -1,4 +1,5 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
   <!-- HomePage -->
@@ -34,6 +35,7 @@
       </div>
     </div>
   </div>
+
   <!-- CategoryPage -->
   <section class="category">
     <div class="p-7 bg-main-bgColor h-screen overflow-y-hidden">
