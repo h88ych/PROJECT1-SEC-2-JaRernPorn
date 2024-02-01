@@ -34,10 +34,11 @@ export default {
         md:'768px',
         lg:'1024px',
         xl:'1440px' //desktop
+      },
+      width:{
+        "catePage-20":"73px"
       }
-    },backgroundImage: {
-      'chinese-frame' : "url('../assets/chinese-frame.png')",
-    }
+    },
   },
   plugins: [],
 };
