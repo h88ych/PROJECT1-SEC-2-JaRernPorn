@@ -1,17 +1,17 @@
 <script setup>
 import { ref } from 'vue'
-const homePage = ref(true)
+const currentPage = ref('homePage')
 const goToCategory = () => {
-  homePage.value = false
+  currentPage.value = 'categoryPage'
 }
-const backToHome = () => {
-  homePage.value = true
+const goToQuizPage = () => {
+  currentPage.value = 'quizPage'
 }
 </script>
 
 <template>
   <!-- HomePage -->
-  <div v-if="homePage">
+  <div v-if="currentPage === 'homePage'">
     <div class="h-screen bg-main-bgColor p-5">
       <div class="border-double border-8 border-title box-border h-full w-full">
         <div
@@ -50,12 +50,11 @@ const backToHome = () => {
     </div>
   </div>
   <!-- CategoryPage -->
-  <div v-else>
+  <div v-else-if="currentPage === 'categoryPage'">
     <section class="category">
       <div class="p-7 bg-main-bgColor h-screen overflow-y-hidden">
         <header>
           <img
-            @click="backToHome"
             class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out"
             src="./assets/categories/icon/left-arrow-01.png"
             alt="left-arrow"
@@ -81,6 +80,7 @@ const backToHome = () => {
                   class="pic w-52 pb-2 hover:w-56 transition-all duration-300 ease-in-out"
                 >
                   <img
+                    @click="goToQuizPage"
                     src="./assets/categories/cate_fruits.png"
                     alt="fruits image"
                     class="hover:drop-shadow-lg"
@@ -143,6 +143,70 @@ const backToHome = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div v-else-if="currentPage === 'quizPage'">
+    <section class="playGame">
+      <div id="app" class="mx-auto max-w-screen-lg">
+        <div class="-z-10 absolute">
+          <img
+            src="./assets/play-game/background.png"
+            alt="background"
+            class="h-screen bg-cover bg-center"
+          />
+        </div>
+
+        <div class="header flex justify-between items-center py-4">
+          <div class="play ml-4 absolute left-10 top-5">
+            <h1 class="text-title text-5xl font-outfit font-bold">
+              Category: fruits
+            </h1>
+          </div>
+          <div class="setting mr-4 absolute right-10 top-6 hover:scale-125">
+            <img
+              src="./assets/play-game/setting.png"
+              alt="setting-img"
+              class="w-12 hover:scale-110"
+            />
+          </div>
+        </div>
+
+        <div id="bg-image" class="flex justify-center my-12">
+          <img
+            class="w-96 my-8"
+            src="./assets/play-game/bg-image.png"
+            alt="bg-image"
+          />
+          <img
+            class="absolute font-outfit mb-4 mx-8 my-20 size-48"
+            src="./assets/play-game/fruits/apple-01.png"
+            alt="Apple"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 justify-center">
+          <button
+            class="bg-button-bgColor text-white font-semibold py-3 px-6 h-20 rounded-md"
+          >
+            Apple
+          </button>
+          <button
+            class="bg-button-bgColor text-white font-semibold py-3 px-6 h-20 rounded-md"
+          >
+            Apple
+          </button>
+          <button
+            class="bg-button-bgColor text-white font-semibold py-3 px-6 h-20 rounded-md"
+          >
+            Apple
+          </button>
+          <button
+            class="bg-button-bgColor text-white font-semibold py-3 px-6 h-20 rounded-md"
+          >
+            Apple
+          </button>
         </div>
       </div>
     </section>
