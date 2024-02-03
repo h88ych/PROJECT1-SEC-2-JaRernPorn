@@ -8,7 +8,7 @@
       >
         <div class="flex-col p-5">
           <img
-            src="./assets/cancel.png"
+            src="./assets/setting-features/cancel.png"
             alt="setting button"
             class="absolute right-4 top-5 w-5 sm:w-8"
           />
@@ -22,16 +22,19 @@
 
           <div class="flex flex-col items-center gap-4 mt-4">
             <img
-              src="./assets/resumeButton.png"
+              src="./assets/setting-features/resumeButton.png"
               alt="resume button"
               class="resume button"
             />
             <img
-              src="./assets/restartButton.png"
+              src="./assets/setting-features/restartButton.png"
               alt="restart button"
               class="mb-2"
             />
-            <img src="./assets/homebutton.png" alt="home button" />
+            <img
+              src="./assets/setting-features/homebutton.png"
+              alt="home button"
+            />
           </div>
         </div>
       </div>
