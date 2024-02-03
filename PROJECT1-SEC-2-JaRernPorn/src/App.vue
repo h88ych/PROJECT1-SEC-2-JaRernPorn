@@ -7,7 +7,7 @@
     >
       <div class="text-center relative translate-middle text-white">
         <img
-          src="./assets/complimentFrame.png"
+          src="./assets/endgame-page/complimentFrame.png"
           alt="Picture that said Excellent!"
           class="mx-auto my-60"
         />
