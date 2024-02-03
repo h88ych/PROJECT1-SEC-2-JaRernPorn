@@ -1,19 +1,32 @@
-<script setup></script>
+<script setup>
+import { reactive } from 'vue'
+
+const changeToHome = ''
+</script>
 
 <template>
-  <div>
-    <!-- Word List Page -->
+  <!-- Word List Page -->
+  <section class="wordList">
     <div class="w-full h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
-        class="size-28 absolute left-5 md:size-44"
+        class="size-28 absolute left-5 md:size-36"
         src="./assets/result-page/result-top.png"
-        alt="result-top"
+        alt="result-deco-top"
       />
+      <div></div>
       <img
-        class="size-28 absolute right-5 bottom-3 md:size-44"
+        class="size-28 absolute right-5 bottom-3 md:size-36"
         src="./assets/result-page/result-bottom.png"
-        alt="result-bottom"
+        alt="result-deco-bottom"
       />
+
+      <div dir="rtl">
+        <img
+          class="size-16 flex hover:scale-110 absolute top-3 right-4 start-0"
+          src="./assets/result-page/home button.png"
+          alt="home"
+        />
+      </div>
 
       <div class="flex flex-col justify-center gap-4 md:gap-10">
         <div class="flex flex-col">
@@ -22,6 +35,7 @@
           >
             Word List
           </header>
+
           <div
             class="font-Outfit font-semibold text-md text-center tracking-subtitle sm:text-lg"
           >
@@ -29,10 +43,8 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-5 ">
-          <section
-            class="flex flex-col"
-          >
+        <div class="flex flex-wrap justify-center gap-5">
+          <section class="flex flex-col">
             <div
               class="bg-white shadow-lg font-Outfit font-medium text-lg p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-80 md:h-96 md:overflow-visible"
             >
@@ -84,12 +96,12 @@
           <div
             class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
           >
-            Home
+            Main Menu
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped></style>
