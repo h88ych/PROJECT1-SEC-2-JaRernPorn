@@ -17,9 +17,14 @@ const playButton = () => {
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = false;
+  allPage.homePage = true;
   allPage.isPopUp = true;
-  console.log(allPage.isPopUp);
+};
+
+//closeButton click event
+const close = () => {
+  allPage.homePage = true;
+  allPage.isPopUp = false;
 };
 
 //backToHomeButton click event
@@ -45,8 +50,11 @@ const categories = [
 
 <template>
   <!-- Home Page -->
-  <section class="homePage " v-if="allPage.homePage">
-    <div class="h-screen w-full bg-main-bgColor p-5 z-1 absolute">
+  <section class="homePage" v-if="allPage.homePage">
+    <div
+      class="h-screen w-full bg-main-bgColor p-5"
+      :class="{ absolute: allPage.isPopUp }"
+    >
       <div class="border-double border-8 border-title box-border h-full w-full">
         <div
           class="logo-title text-center text-title pt-title sm:text-title-size mobile:text-mobile-title-size"
@@ -84,12 +92,15 @@ const categories = [
     </div>
 
     <!-- How To Play Page -->
-    <div class="flex justify-center items-center h-screen">
+    <div
+      class="flex justify-center items-center h-screen"
+      v-if="allPage.isPopUp"
+    >
       <div
         class="overflow-y-scroll h-4/5 w-5/12 bg-white rounded-2xl drop-shadow-2xl md:text-left md:w-5/12 sm:px-16 sm:py-10 sm:text-center sm:w-6/12 mobile:w-11/12 mobile:px-8 mobile:py-14"
       >
-        <!-- Close and Back to home Button -->
-        <div class="close absolute top-4 left-4" @click="backToHome">
+        <!-- Close Button -->
+        <div class="close absolute top-4 left-4" @click="close">
           <img
             class="w-6"
             title="close"
@@ -103,14 +114,22 @@ const categories = [
         <div class="content">
           <div class="HTP-1">
             <p class="text-lg mb-4 font-outfit">1. Select the category.</p>
-            <img class="mb-9" src="./assets/HowToPlay-page/HTP-1.png" alt="HTP-1" />
+            <img
+              class="mb-9"
+              src="./assets/HowToPlay-page/HTP-1.png"
+              alt="HTP-1"
+            />
           </div>
 
           <div class="HTP-2">
             <p class="text-lg mb-4 font-outfit">
               2. Choose the word that matches the picture.
             </p>
-            <img class="mb-9" src="./assets/HowToPlay-page/HTP-2.png" alt="HTP-2" />
+            <img
+              class="mb-9"
+              src="./assets/HowToPlay-page/HTP-2.png"
+              alt="HTP-2"
+            />
           </div>
 
           <div class="HTP-3">
@@ -131,7 +150,11 @@ const categories = [
               4. Game end: List displays your choice and correct answer. Correct
               is normal, incorrect is red.
             </p>
-            <img class="mb-9" src="./assets/HowToPlay-page/HTP-4.png" alt="HTP-4" />
+            <img
+              class="mb-9"
+              src="./assets/HowToPlay-page/HTP-4.png"
+              alt="HTP-4"
+            />
           </div>
         </div>
       </div>
