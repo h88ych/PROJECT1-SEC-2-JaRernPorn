@@ -33,7 +33,6 @@ const categories = [
   { id: 4, src: 'src/assets/categories/cate_family.png', word: 'Family' },
   { id: 5, src: 'src/assets/categories/cate_numbers.png', word: 'Numbers' }
 ]
-
 </script>
 
 <template>
@@ -100,7 +99,7 @@ const categories = [
           class="boxes font-semibold text-black font-outfit flex flex-col flex-wrap"
         >
           <div
-            class="firstLine flex flex-col md:flex-row space-x-0 md:space-x-28 pb-10 md:flex-wrap"
+            class="firstLine flex flex-col md:flex-row space-x-0 md:space-x-72 pb-10 md:flex-wrap md:ml-80"
           >
             <div
               class="fruits flex flex-col items-center"
