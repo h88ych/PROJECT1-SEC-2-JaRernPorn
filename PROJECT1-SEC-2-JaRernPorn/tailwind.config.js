@@ -41,6 +41,7 @@ export default {
         "catePage-20":"73px"
       }
     },
+    
   },
   plugins: []
 }
