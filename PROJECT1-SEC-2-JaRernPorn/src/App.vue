@@ -1,45 +1,52 @@
-
 <script setup>
-import { reactive } from 'vue'
+import { reactive } from "vue";
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
-  categoryPage: '',
-  playgamePage: ''
-})
+  categoryPage: "",
+  playgamePage: "",
+  isPopUp: "",
+});
 
-//play button click event
+//playbutton click event
 const playButton = () => {
-  allPage.homePage = false
-  allPage.categoryPage = true
-}
+  allPage.homePage = false;
+  allPage.categoryPage = true;
+};
 
-//backToHome button click event
+//howToPlayButton click event
+const howToPlayButton = () => {
+  allPage.homePage = false;
+  allPage.isPopUp = true;
+  console.log(allPage.isPopUp);
+};
+
+//backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true
-  allPage.categoryPage = false
-}
+  allPage.homePage = true;
+  allPage.categoryPage = false;
+};
 
 const showPlaygame = () => {
-  allPage.playgamePage = true
-  allPage.categoryPage = false
-}
+  allPage.playgamePage = true;
+  allPage.categoryPage = false;
+};
 
 //categories
 const categories = [
-  { id: 1, src: 'src/assets/categories/cate_fruits.png', word: 'Fruits' },
-  { id: 2, src: 'src/assets/categories/cate_animals.png', word: 'Animals' },
-  { id: 3, src: 'src/assets/categories/cate_colors.png', word: 'Colors' },
-  { id: 4, src: 'src/assets/categories/cate_family.png', word: 'Family' },
-  { id: 5, src: 'src/assets/categories/cate_numbers.png', word: 'Numbers' }
-]
+  { id: 1, src: "src/assets/categories/cate_fruits.png", word: "Fruits" },
+  { id: 2, src: "src/assets/categories/cate_animals.png", word: "Animals" },
+  { id: 3, src: "src/assets/categories/cate_colors.png", word: "Colors" },
+  { id: 4, src: "src/assets/categories/cate_family.png", word: "Family" },
+  { id: 5, src: "src/assets/categories/cate_numbers.png", word: "Numbers" },
+];
 </script>
 
 <template>
-  <!-- HomePage -->
-  <section class="homePage" v-if="allPage.homePage">
-    <div class="h-screen bg-main-bgColor p-5">
+  <!-- Home Page -->
+  <section class="homePage " v-if="allPage.homePage">
+    <div class="h-screen w-full bg-main-bgColor p-5 z-1 absolute">
       <div class="border-double border-8 border-title box-border h-full w-full">
         <div
           class="logo-title text-center text-title pt-title sm:text-title-size mobile:text-mobile-title-size"
@@ -63,19 +70,75 @@ const categories = [
               @click="playButton"
             />
           </div>
+          <!-- How to Play Button -->
           <div id="HTP-button" class="flex justify-center pt-6">
             <img
               class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out"
               src="./assets/home-page/HTP-button.svg"
               alt="HTP-button"
+              @click="howToPlayButton"
             />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How To Play Page -->
+    <div class="flex justify-center items-center h-screen">
+      <div
+        class="overflow-y-scroll h-4/5 w-5/12 bg-white rounded-2xl drop-shadow-2xl md:text-left md:w-5/12 sm:px-16 sm:py-10 sm:text-center sm:w-6/12 mobile:w-11/12 mobile:px-8 mobile:py-14"
+      >
+        <!-- Close and Back to home Button -->
+        <div class="close absolute top-4 left-4" @click="backToHome">
+          <img
+            class="w-6"
+            title="close"
+            src="./assets/HowToPlay-page/close-vector.png"
+            alt="close-vector"
+          />
+        </div>
+        <h1 class="text-4xl font-bold text-center mb-6 font-alkatra text-title">
+          HOW TO PLAY
+        </h1>
+        <div class="content">
+          <div class="HTP-1">
+            <p class="text-lg mb-4 font-outfit">1. Select the category.</p>
+            <img class="mb-9" src="./assets/HowToPlay-page/HTP-1.png" alt="HTP-1" />
+          </div>
+
+          <div class="HTP-2">
+            <p class="text-lg mb-4 font-outfit">
+              2. Choose the word that matches the picture.
+            </p>
+            <img class="mb-9" src="./assets/HowToPlay-page/HTP-2.png" alt="HTP-2" />
+          </div>
+
+          <div class="HTP-3">
+            <p class="text-lg mb-4 font-outfit">
+              3. If you answer <span class="text-red-500">incorrectly</span>, a
+              pop-up will appear with the correct answer before moving on to the
+              next question.
+            </p>
+            <img
+              class="mb-9 w-screen rounded-lg"
+              src="./assets/HowToPlay-page/HTP-3.png"
+              alt="HTP-3"
+            />
+          </div>
+
+          <div class="HTP-4">
+            <p class="text-lg mb-4 font-outfit">
+              4. Game end: List displays your choice and correct answer. Correct
+              is normal, incorrect is red.
+            </p>
+            <img class="mb-9" src="./assets/HowToPlay-page/HTP-4.png" alt="HTP-4" />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CategoryPage -->
+  <!-- Category Page -->
   <section class="category" v-else-if="allPage.categoryPage">
     <div class="p-7 bg-main-bgColor h-screen overflow-y-hidden">
       <header>
@@ -124,7 +187,7 @@ const categories = [
     </div>
   </section>
 
-  <!-- playGame Page -->
+  <!-- Play Game Page -->
   <section class="playGame" v-if="false">
     <div id="app" class="mx-auto max-w-screen-lg">
       <div class="-z-10 absolute">
@@ -187,61 +250,6 @@ const categories = [
       </div>
     </div>
   </section>
-
-  <div class="flex justify-center items-center h-screen">
-    <div
-      class="overflow-y-scroll h-4/5 w-5/12 bg-white rounded-2xl drop-shadow-2xl 
-      md:text-left md:w-5/12 
-      sm:px-16 sm:py-10 sm:text-center sm:w-6/12 
-      mobile:w-11/12 mobile:px-8 mobile:py-14"
-    >
-      <div class="absolute top-4 left-4">
-        <img
-          class="w-6"
-          title="close"
-          src="./assets/HowToPlay/close-vector.png"
-          alt="close-vector"
-        />
-      </div>
-      <h1 class="text-4xl font-bold text-center mb-6 font-alkatra text-title">
-        HOW TO PLAY
-      </h1>
-      <div class="content">
-        <div class="HTP-1">
-          <p class="text-lg mb-4 font-outfit">1. Select the category.</p>
-          <img class="mb-9" src="./assets/HowToPlay/HTP-1.png" alt="HTP-1" />
-        </div>
-
-        <div class="HTP-2">
-          <p class="text-lg mb-4 font-outfit">
-            2. Choose the word that matches the picture.
-          </p>
-          <img class="mb-9" src="./assets/HowToPlay/HTP-2.png" alt="HTP-2" />
-        </div>
-
-        <div class="HTP-3">
-          <p class="text-lg mb-4 font-outfit">
-            3. If you answer <span class="text-red-500">incorrectly</span>, a
-            pop-up will appear with the correct answer before moving on to the
-            next question.
-          </p>
-          <img
-            class="mb-9 w-screen rounded-lg"
-            src="./assets/HowToPlay/HTP-3.png"
-            alt="HTP-3"
-          />
-        </div>
-
-        <div class="HTP-4">
-          <p class="text-lg mb-4 font-outfit">
-            4. Game end: List displays your choice and correct answer. Correct
-            is normal, incorrect is red.
-          </p>
-          <img class="mb-9" src="./assets/HowToPlay/HTP-4.png" alt="HTP-4" />
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <style scoped></style>
