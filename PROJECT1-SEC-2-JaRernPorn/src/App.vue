@@ -1,12 +1,31 @@
 <script setup>
 import { reactive } from 'vue'
 
-const changeToHome = ''
+//all page will add to this
+const allPage = reactive({
+  homePage: false,
+  categoryPage: '',
+  resultPage: ''
+})
+
+//play button click event
+const playButton = () => {
+  allPage.homePage = false
+  allPage.categoryPage = true
+  allPage.resultPage = false
+}
+
+//backToHome button click event
+const backToHome = () => {
+  allPage.homePage = true
+  allPage.categoryPage = false
+  allPage.resultPage = false
+}
 </script>
 
 <template>
   <!-- Word List Page -->
-  <section class="wordList">
+  <section class="resultPage" v-if="allPage.resultPage == false">
     <div class="w-full h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
@@ -22,9 +41,10 @@ const changeToHome = ''
 
       <div dir="rtl">
         <img
-          class="size-16 flex hover:scale-110 absolute top-3 right-4 start-0"
+          class="size-14 flex hover:scale-110 absolute top-3 right-7 start-0"
           src="./assets/result-page/home button.png"
           alt="home"
+          @click="backToHome"
         />
       </div>
 
