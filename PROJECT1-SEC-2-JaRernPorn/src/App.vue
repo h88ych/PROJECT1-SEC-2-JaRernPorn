@@ -9,19 +9,23 @@
         <img
           src="./assets/wrongPopup/Frame.png"
           alt="Frame chinese theme"
-          class="mx-auto my-60"
+          class="w-10/12 mx-auto"
         />
         <div
           class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex-col space-y-14"
         >
-          <p
-            class="uppercase text-brownColor text-2xl font-outfit md:text-resultButton-size sm:text-4xl xl:text-resultButton-size"
+          <div
+            class="capitalize text-brownColor text-xl font-alkatra font-semibold tracking-wide relative right-7 top-8 sm:right-[50px] sm:text-4xl md:text-5xl lg:text-6xl lg:right-[60px]"
           >
             The answer is<br />
-            <span class="text-answer-fontColor">西瓜 (xīguā)</span>
-          </p>
+            <div
+              class="text-answer-fontColor font-NotoSansSC font-medium lowercase text-sm relative sm:text-2xl md:text-4xl"
+            >
+              西瓜 (xīguā)
+            </div>
+          </div>
           <button
-            class="border border-10 w-60 h-24 text-[50px] rounded-full bg-white text-brownColor font-semibold relative -top-[22px] shadow-md shadow-zinc-600"
+            class="text-sm text-brownColor font-semibold font-alkatra tracking-wider relative right-7 bottom-3 hover:text-answer-fontColor sm:right-[50px] sm:top-[18px] sm:text-2xl md:text-3xl lg:right-[60px]"
           >
             NEXT
           </button>

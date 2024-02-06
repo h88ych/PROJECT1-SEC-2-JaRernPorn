@@ -2,10 +2,17 @@
 export default {
   content: ['./index.html', './src//*.{vue,js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      sm: '480px', //phone
+      md: '768px',
+      lg: '1024px',
+      xl: '2560px' //desktop
+    },
     extend: {
       fontFamily: {
         alkatra: ['Alkatra', 'sans-serif'],
-        outfit: ['Outfit', 'sans-serif']
+        outfit: ['Outfit', 'sans-serif'],
+        NotoSansSC: ['Noto Sans SC', 'sans-serif']
       },
       colors: {
         title: '#B11717',
