@@ -1,51 +1,51 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue'
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
-  categoryPage: "",
-  playgamePage: "",
-  isPopUp: "",
-});
+  categoryPage: '',
+  playgamePage: '',
+  isPopUp: ''
+})
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false;
-  allPage.categoryPage = true;
-};
+  allPage.homePage = false
+  allPage.categoryPage = true
+}
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true;
-  allPage.isPopUp = true;
-};
+  allPage.homePage = true
+  allPage.isPopUp = true
+}
 
 //closeButton click event
 const close = () => {
-  allPage.homePage = true;
-  allPage.isPopUp = false;
-};
+  allPage.homePage = true
+  allPage.isPopUp = false
+}
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true;
-  allPage.categoryPage = false;
-};
+  allPage.homePage = true
+  allPage.categoryPage = false
+}
 
 const showPlaygame = () => {
-  allPage.playgamePage = true;
-  allPage.categoryPage = false;
-};
+  allPage.playgamePage = true
+  allPage.categoryPage = false
+}
 
 //categories
 const categories = [
-  { id: 1, src: "src/assets/categories/cate_fruits.png", word: "Fruits" },
-  { id: 2, src: "src/assets/categories/cate_animals.png", word: "Animals" },
-  { id: 3, src: "src/assets/categories/cate_colors.png", word: "Colors" },
-  { id: 4, src: "src/assets/categories/cate_family.png", word: "Family" },
-  { id: 5, src: "src/assets/categories/cate_numbers.png", word: "Numbers" },
-];
+  { id: 1, src: 'src/assets/categories/cate_fruits.png', word: 'Fruits' },
+  { id: 2, src: 'src/assets/categories/cate_animals.png', word: 'Animals' },
+  { id: 3, src: 'src/assets/categories/cate_colors.png', word: 'Colors' },
+  { id: 4, src: 'src/assets/categories/cate_family.png', word: 'Family' },
+  { id: 5, src: 'src/assets/categories/cate_numbers.png', word: 'Numbers' }
+]
 </script>
 
 <template>
@@ -72,7 +72,7 @@ const categories = [
           <!-- Play Button -->
           <div id="play-button" class="flex justify-center pt-12">
             <img
-              class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out"
+              class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out cursor-pointer"
               src="./assets/home-page/play-button.svg"
               alt="play-button"
               @click="playButton"
@@ -81,7 +81,7 @@ const categories = [
           <!-- How to Play Button -->
           <div id="HTP-button" class="flex justify-center pt-6">
             <img
-              class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out"
+              class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out cursor-pointer"
               src="./assets/home-page/HTP-button.svg"
               alt="HTP-button"
               @click="howToPlayButton"
@@ -100,7 +100,7 @@ const categories = [
         class="overflow-y-scroll h-4/5 bg-white rounded-2xl drop-shadow-2xl relative md:w-5/12 sm:w-6/12 mobile:w-11/12"
       >
         <!-- Close Button -->
-        <div class="sticky top-3" @click="close">
+        <div class="sticky top-3 cursor-pointer" @click="close">
           <img
             class="w-6 sticky left-3"
             title="close"
@@ -174,7 +174,7 @@ const categories = [
       <header>
         <!-- Back to home Button -->
         <img
-          class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out"
+          class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out cursor-pointer"
           src="./assets/categories/icon/left-arrow-01.png"
           alt="left-arrow"
           @click="backToHome"
@@ -196,7 +196,7 @@ const categories = [
             class="firstLine flex flex-col md:flex-row space-x-0 md:space-x-72 pb-10 md:flex-wrap md:ml-80"
           >
             <div
-              class="fruits flex flex-col items-center"
+              class="fruits flex flex-col items-center cursor-pointer"
               v-for="category in categories"
             >
               <div
