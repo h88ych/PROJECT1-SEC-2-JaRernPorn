@@ -67,7 +67,7 @@ const checkAnswer = (selectedOption) => {
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
   } else {
-    resultMessage.value = 'Wrong!'
+    resultMessage.value = 'Wrong! The answer is ... ' + answer.value
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
