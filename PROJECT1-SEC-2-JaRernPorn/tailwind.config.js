@@ -14,6 +14,7 @@ export default {
         outfit: ['Outfit', 'sans-serif'],
         NotoSansSC: ['Noto Sans SC', 'sans-serif']
       },
+
       colors: {
         title: '#B11717',
         'button-bgColor': '#861616',
@@ -41,7 +42,9 @@ export default {
         // title: '100px'
       },
       letterSpacing: {
-        'sub-title': '2.8px'
+        'sub-title': '2.8px',
+        title: '2.8px',
+      subtitle: '1.5px'
       },
       screens:{
         mobile:'320px',
@@ -56,9 +59,25 @@ export default {
     
     backgroundImage: {
       'chinese-frame': "url('../assets/chinese-frame.png')"
-    }
-  }
-
+    },
+  
+    fontFamily: {
+      Alkarta: ['Alkatra', 'system-ui'],
+      Outfit: ['Outfit', 'sans-serif'],
+      NotoSansSC: ['Noto Sans SC', 'sans-serif']
+    },
+    lineHeight: {
+      title: '1.10',
+      list: '2.3',
+      listMobile: '2'
+    },
+    // padding: {
+    //   title: '100px'
+    // },
   },
-  plugins: []
+  plugins: [
+    [require('daisyui'), require('tailwind-scrollbar')({ nocompatible: true })]
+  ]
+
+}
 }
