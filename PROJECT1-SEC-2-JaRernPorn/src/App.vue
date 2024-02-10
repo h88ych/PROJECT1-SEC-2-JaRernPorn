@@ -10,6 +10,19 @@ const options = ref([])
 const currentIndex = ref(0)
 const currentIndexCate = ref(0)
 const settingButton = ref(false)
+const showAnswer = ref(false)
+
+const showEndgame=ref(false)
+const showWordListPage=ref(false)
+const showResultPage=()=>{
+  showEndgame.value=false
+  showWordListPage.value=true
+}
+
+const handleNextBtn = () => {
+  showAnswer.value = false
+  currentIndex.value++
+}
 
 //all page will add to this
 const allPage = reactive({
@@ -105,15 +118,20 @@ const checkAnswer = (selectedOption) => {
 
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
+    setTimeout(() => {
+      currentIndex.value++ // เลื่อนไปรูปถัดไป
+      showResult.value = false
+    }, 2000)
   } else {
-    resultMessage.value = 'Wrong! The answer is ... ' + answer.value
+    showAnswer.value = true
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
+    allPage.playgamePage=false
+    showEndgame.value=true
     setTimeout(() => {
-      resultMessage.value = 'Game Over!'
+      showResultPage()
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
-    return resultMessage.value
   }
 
   setTimeout(() => {
@@ -318,7 +336,7 @@ const setButtonCorrect = (optionValue) => {
     class="playGame md:min-h-screen bg-main-bgColor"
     v-else-if="allPage.playgamePage"
   >
-    <div id="app" class="mx-auto max-w-screen-lg">
+    <div id="app" class="mx-auto max-w-screen-lg relative">
       <!-- <div class="-z-10 absolute">
 
         <img
@@ -424,6 +442,82 @@ const setButtonCorrect = (optionValue) => {
         <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
       </div>
     </div>
+  </section>
+
+  <!-- Wrong popup  -->
+  <section
+    v-if="showAnswer"
+    class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50"
+  >
+    <div id="body" class="w-full h-screen p-5 relative">
+      <div
+        class="w-full h-full relative text-center flex justify-center items-center"
+      >
+        <div class="text-center relative translate-middle text-white">
+          <img
+            src="./assets/wrongPopup/Frame.png"
+            alt="Frame chinese theme"
+            class="w-10/12 mx-auto"
+          />
+          <div
+            class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex-col space-y-14"
+          >
+            <div
+              class="capitalize text-brownColor text-xl font-alkatra font-semibold tracking-wide relative right-7 top-8 sm:right-[50px] sm:text-4xl md:text-5xl lg:text-6xl lg:right-[60px]"
+            >
+              The answer is<br />
+              <div
+                class="text-answer-fontColor font-NotoSansSC font-medium lowercase text-sm relative sm:text-2xl md:text-4xl"
+              >
+                {{ answer }}
+              </div>
+            </div>
+            <button
+              class="text-sm text-brownColor font-semibold font-alkatra tracking-wider relative right-7 bottom-3 hover:text-answer-fontColor sm:right-[50px] sm:top-[18px] sm:text-2xl md:text-3xl lg:right-[60px]"
+              @click="handleNextBtn"
+            >
+              NEXT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end game page  -->
+  <section v-if="showEndgame">
+    <div id="body" class="bg-main-bgColor w-full h-screen p-5 relative">
+      <div
+        class="border-double border-8 border-title box-border w-full h-full relative text-center flex justify-center items-center"
+      >
+        <div class="text-center relative translate-middle text-white">
+          <img
+            src="./assets/endgame-page/complimentFrame.png"
+            alt="Picture that said Excellent!"
+            class="mx-auto my-60"
+          />
+          <div
+            class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          >
+            <h1
+              class="uppercase text-4xl font-alkatra md:text-compliment-size sm:text-6xl xl:text-compliment-size"
+            >
+              excellent!
+            </h1>
+            <p
+              class="text-2xl font-outfit md:text-resultButton-size sm:text-4xl xl:text-resultButton-size"
+            >
+              Let’s See The Result
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- result page  -->
+  <section v-if="showWordListPage">
+    <h1>Result page</h1>
   </section>
 </template>
 
