@@ -1,6 +1,8 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import images from '../data/categories';
+
+const currentIndexCate=ref(0)
 
 //all page will add to this
 const allPage = reactive({
@@ -93,8 +95,9 @@ const backToHome = () => {
               <div class="border-b-2 border-black"></div>
               <div
                 class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
-              >
-                hi
+                v-for="answer in images[currentIndexCate].groups"
+                >
+               {{ answer.word }}
               </div>
             </div>
           </section>
