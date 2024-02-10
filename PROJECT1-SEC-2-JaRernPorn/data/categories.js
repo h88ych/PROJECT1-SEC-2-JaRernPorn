@@ -59,13 +59,13 @@ const images = [
     categoryName: 'Numbers',
     cateImg: 'src/assets/categories/cate_numbers.png' ,
     groups: [
-      { id: 1, src: 'src/assets/play-game/seven-01.png', word: '七 (qī)' },
-      { id: 2, src: 'src/assets/play-game/two-01.png', word: '二 (èr)' },
-      { id: 3, src: 'src/assets/play-game/five-01.png', word: '五 (wǔ)' },
-      { id: 4, src: 'src/assets/play-game/zero-01.png', word: '零 (líng)' },
-      { id: 5, src: 'src/assets/play-game/one-01.png', word: '一 (yī)' },
-      { id: 6, src: 'src/assets/play-game/ten-01.png', word: '十 (shí)' },
-      { id: 7, src: 'src/assets/play-game/eight-01.png', word: '八 (bā)' },
+      { id: 1, src: 'src/assets/play-game/number/seven-01.png', word: '七 (qī)' },
+      { id: 2, src: 'src/assets/play-game/number/two-01.png', word: '二 (èr)' },
+      { id: 3, src: 'src/assets/play-game/number/five-01.png', word: '五 (wǔ)' },
+      { id: 4, src: 'src/assets/play-game/number/zero-01.png', word: '零 (líng)' },
+      { id: 5, src: 'src/assets/play-game/number/one-01.png', word: '一 (yī)' },
+      { id: 6, src: 'src/assets/play-game/number/ten-01.png', word: '十 (shí)' },
+      { id: 7, src: 'src/assets/play-game/number/eight-01.png', word: '八 (bā)' },
     ]
   }
 ]
