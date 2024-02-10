@@ -540,7 +540,7 @@ const setButtonCorrect = (optionValue) => {
 
   <!-- Word List Page -->
   <section class="resultPage" v-if="allPage.resultPage">
-    <div class="w-full h-screen bg-main-bgColor pt-4 flex justify-center">
+    <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
         src="./assets/result-page/result-top.png"
@@ -600,7 +600,7 @@ const setButtonCorrect = (optionValue) => {
 
           <section class="flex flex-col">
             <div
-              class="bg-white shadow-lg font-Outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-80 md:h-96 md:overflow-visible"
+              class="bg-white shadow-lg font-Outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-visible"
             >
               Answer:
               <div class="border-b-2 border-black"></div>
@@ -608,7 +608,7 @@ const setButtonCorrect = (optionValue) => {
                   class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
                   v-for="answer in images[currentIndexCate].groups"
                 >
-                  {{ answer.word }}
+                  {{ answer.word }} - {{ answer.meaning }}
                 </div>
             </div>
           </section>
