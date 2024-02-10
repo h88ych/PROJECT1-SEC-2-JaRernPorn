@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
+import images from '../data/categories';
 
 //all page will add to this
 const allPage = reactive({
@@ -93,13 +94,7 @@ const backToHome = () => {
               <div
                 class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
-                1. 苹果 píngguǒ <br />
-                2. 西瓜 (xīguā)<br />
-                3. 草莓 (cǎoméi)<br />
-                4. 菠萝 (bōluó) <br />
-                5. 芒果 (mángguǒ)<br />
-                6. 香蕉 (xiāngjiāo)<br />
-                7. 葡萄 (pú táo)
+                hi
               </div>
             </div>
           </section>
