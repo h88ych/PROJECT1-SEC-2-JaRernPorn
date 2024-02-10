@@ -1,158 +1,164 @@
 <script setup>
-import { reactive, ref, computed } from 'vue'
-import images from '../data/categories'
+import { reactive, ref, computed } from "vue";
+import images from "../data/categories";
 
-const answer = ref('')
-const showResult = ref(false)
-const selectedAnswer = ref('')
-const resultMessage = ref('')
-const options = ref([])
-const currentIndex = ref(0)
-const currentIndexCate = ref(0)
-const settingButton = ref(false)
-const showAnswer = ref(false)
+const answer = ref("");
+const showResult = ref(false);
+const selectedAnswer = ref("");
+const resultMessage = ref("");
+const options = ref([]);
+const currentIndex = ref(0);
+const currentIndexCate = ref(0);
+const settingButton = ref(false);
+const showAnswer = ref(false);
 
-const showEndgame=ref(false)
-const showWordListPage=ref(false)
-const showResultPage=()=>{
-  showEndgame.value=false
-  showWordListPage.value=true
-}
+//for result page
+const userAnswer = ref([]);
+
+const showEndgame = ref(false);
+const showResultPage = () => {
+  showEndgame.value = false;
+  resultPage.value = true;
+};
 
 const handleNextBtn = () => {
-  showAnswer.value = false
-  currentIndex.value++
-}
+  showAnswer.value = false;
+  currentIndex.value++;
+};
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
-  categoryPage: '',
-  playgamePage: '',
-  isPopUp: ''
-})
+  categoryPage: "",
+  playgamePage: "",
+  isPopUp: "",
+  resultPage: "",
+});
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false
-  allPage.categoryPage = true
-}
+  allPage.homePage = false;
+  allPage.categoryPage = true;
+};
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true
-  allPage.isPopUp = true
-}
+  allPage.homePage = true;
+  allPage.isPopUp = true;
+};
 
 //closeButton click event
 const close = () => {
-  allPage.homePage = true
-  allPage.isPopUp = false
-}
+  allPage.homePage = true;
+  allPage.isPopUp = false;
+};
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true
-  allPage.categoryPage = false
-}
+  allPage.homePage = true;
+  allPage.categoryPage = false;
+};
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index
-  allPage.playgamePage = true
-  allPage.categoryPage = false
-}
+  currentIndexCate.value = index;
+  allPage.playgamePage = true;
+  allPage.categoryPage = false;
+};
 
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true
-}
+  settingButton.value = true;
+};
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false
-}
+  settingButton.value = false;
+};
+
 const currentCategory = computed(() => {
-  return images[currentIndexCate.value].categoryName
-})
+  return images[currentIndexCate.value].categoryName;
+});
 
 // รูปที่แสดงตอนเล่น
 const currentImage = computed(() => {
   if (currentIndex.value === images[currentIndexCate.value].groups.length) {
-    return '' // เกมสิ้นสุด
+    return ""; // เกมสิ้นสุด
   }
 
-  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word
-  options.value = generateOptions(answer.value)
-  return images[currentIndexCate.value].groups[currentIndex.value].src
-})
+  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word;
+  options.value = generateOptions(answer.value);
+  return images[currentIndexCate.value].groups[currentIndex.value].src;
+});
 
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = []
-  optionsArray.push({ id: 1, value: answer })
+  const optionsArray = [];
+  optionsArray.push({ id: 1, value: answer });
   while (optionsArray.length < 4) {
     const randomWord =
       images[currentIndexCate.value].groups[
         Math.floor(Math.random() * images[currentIndexCate.value].groups.length)
-      ].word
+      ].word;
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
     }
   }
-  return shuffle(optionsArray)
-}
+  return shuffle(optionsArray);
+};
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return array
-}
+  return array;
+};
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  showResult.value = true
+  showResult.value = true;
+  userAnswer.value.push(selectedOption);
+  console.log(userAnswer.value);
 
   if (selectedOption === answer.value) {
     // resultMessage.value = 'Correct!'
-    setSelectedAnswer(selectedOption)
+    setSelectedAnswer(selectedOption);
     setTimeout(() => {
-      currentIndex.value++ // เลื่อนไปรูปถัดไป
-      showResult.value = false
-    }, 2000)
+      currentIndex.value++; // เลื่อนไปรูปถัดไป
+      showResult.value = false;
+    }, 2000);
   } else {
-    showAnswer.value = true
+    showAnswer.value = true;
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
-    allPage.playgamePage=false
-    showEndgame.value=true
+    allPage.playgamePage = false;
+    showEndgame.value = true;
     setTimeout(() => {
-      showResultPage()
-    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+      showResultPage();
+    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
+    allPage.resultPage = true;
   }
-
-}
+};
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value
-}
+  selectedAnswer.value = value;
+};
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (showResult.value && optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return 'bg-green-600'
+      return "bg-green-600";
     } else {
-      return 'bg-red-600'
+      return "bg-red-600";
     }
   }
-  return 'bg-button-bgColor'
-}
+  return "bg-button-bgColor";
+};
 //all page will add to this
 // const allPage = reactive({
 //   homePage: false,
@@ -524,17 +530,16 @@ const setButtonCorrect = (optionValue) => {
             <p
               class="text-2xl font-outfit md:text-resultButton-size sm:text-4xl xl:text-resultButton-size"
             >
-              Let’s See The Result
+              Let's See The Result
             </p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </section>
-            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Word List Page -->
-  <section class="resultPage" v-if="allPage.resultPage == false">
+  <section class="resultPage" v-if="allPage.resultPage">
     <div class="w-full h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
@@ -580,15 +585,15 @@ const setButtonCorrect = (optionValue) => {
               Your Answer:
               <div class="border-b-2 border-black"></div>
               <div
-                class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
+                v-for="(userAns, index) in userAnswer"
+                :key="index"
+                :class="{
+                  'text-red-500':
+                    userAns !== images[currentIndexCate].groups[index].word,
+                }"
+                class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
-                1. 苹果 píngguǒ <br />
-                2. 西瓜 (xīguā)<br />
-                3. 草莓 (cǎoméi)<br />
-                <span class="text-title">4. 木瓜 (mùguā)</span> <br />
-                5. 芒果 (mángguǒ)<br />
-                6. 香蕉 (xiāngjiāo)<br />
-                7. 葡萄 (pú táo)
+                {{ userAns }}
               </div>
             </div>
           </section>
@@ -599,12 +604,12 @@ const setButtonCorrect = (optionValue) => {
             >
               Answer:
               <div class="border-b-2 border-black"></div>
-              <div
-                class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
-                v-for="answer in images[currentIndexCate].groups"
+                <div
+                  class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
+                  v-for="answer in images[currentIndexCate].groups"
                 >
-               {{ answer.word }}
-              </div>
+                  {{ answer.word }}
+                </div>
             </div>
           </section>
         </div>
@@ -621,19 +626,11 @@ const setButtonCorrect = (optionValue) => {
             class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
           >
             Main Menu
-
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <!-- result page  -->
-  <section v-if="showWordListPage">
-    <h1>Result page</h1>
-  </section>
-
 </template>
 
 <style scoped></style>
