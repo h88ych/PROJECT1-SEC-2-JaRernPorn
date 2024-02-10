@@ -117,7 +117,8 @@ const checkAnswer = (selectedOption) => {
   showResult.value = true
 
   if (selectedOption === answer.value) {
-    resultMessage.value = 'Correct!'
+    // resultMessage.value = 'Correct!'
+    setSelectedAnswer(selectedOption)
     setTimeout(() => {
       currentIndex.value++ // เลื่อนไปรูปถัดไป
       showResult.value = false
@@ -134,11 +135,6 @@ const checkAnswer = (selectedOption) => {
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
 
-  setTimeout(() => {
-    currentIndex.value++ // เลื่อนไปรูปถัดไป
-    showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
-  }, 2000) // รอ 2 วิ
-  setSelectedAnswer(selectedOption)
 }
 
 // track selected answer from user by ref
