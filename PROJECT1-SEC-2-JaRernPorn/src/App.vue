@@ -152,28 +152,28 @@ const setButtonCorrect = (optionValue) => {
     }
   }
   return 'bg-button-bgColor'
-
+}
 //all page will add to this
-const allPage = reactive({
-  homePage: false,
-  categoryPage: '',
-  resultPage: ''
-})
+// const allPage = reactive({
+//   homePage: false,
+//   categoryPage: '',
+//   resultPage: ''
+// })
 
-//play button click event
-const playButton = () => {
-  allPage.homePage = false
-  allPage.categoryPage = true
-  allPage.resultPage = false
-}
+// //play button click event
+// const playButton = () => {
+//   allPage.homePage = false
+//   allPage.categoryPage = true
+//   allPage.resultPage = false
+// }
 
-//backToHome button click event
-const backToHome = () => {
-  allPage.homePage = true
-  allPage.categoryPage = false
-  allPage.resultPage = false
+// //backToHome button click event
+// const backToHome = () => {
+//   allPage.homePage = true
+//   allPage.categoryPage = false
+//   allPage.resultPage = false
 
-}
+// }
 </script>
 
 <template>
