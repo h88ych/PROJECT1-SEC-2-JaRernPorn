@@ -66,7 +66,7 @@ const shuffle = (array) => {
 // logic check answer
 const checkAnswer = (selectedOption) => {
   showResult.value = true
-  setSelectedButton(selectedOption)
+
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
   } else {
@@ -84,9 +84,11 @@ const checkAnswer = (selectedOption) => {
     currentIndex.value++ // เลื่อนไปรูปถัดไป
     showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
   }, 1000) // รอ 2 วิ
+
+  setSelectedButton(selectedOption)
 }
 
-// track selected button by ref --> const selectedButton = ref('')
+// track selected button by ref
 const setSelectedButton = (value) => {
   selectedButton.value = value
 }
@@ -200,7 +202,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="checkAnswer(option.value)"
             :class="setButtonCorrect(option.value)"
-            class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl py-3 px-6 h-20 rounded-md hover:"
+            class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl h-20 rounded-md hover:drop-shadow-lg"
           >
             {{ option.value }}
           </button>
