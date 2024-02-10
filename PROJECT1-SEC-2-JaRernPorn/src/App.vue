@@ -4,6 +4,7 @@ import images from '../data/categories'
 
 const answer = ref('')
 const showResult = ref(false)
+const selectedAnswer = ref('')
 const resultMessage = ref('')
 const options = ref([])
 const currentIndex = ref(0)
@@ -57,7 +58,6 @@ const openSetting = () => {
 const closeSetting = () => {
   settingButton.value = false
 }
-
 const currentCategory = computed(() => {
   return images[currentIndexCate.value].categoryName
 })
@@ -99,8 +99,10 @@ const shuffle = (array) => {
   return array
 }
 
+// logic check answer
 const checkAnswer = (selectedOption) => {
   showResult.value = true
+
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
   } else {
@@ -118,6 +120,24 @@ const checkAnswer = (selectedOption) => {
     currentIndex.value++ // เลื่อนไปรูปถัดไป
     showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
   }, 2000) // รอ 2 วิ
+  setSelectedAnswer(selectedOption)
+}
+
+// track selected answer from user by ref
+const setSelectedAnswer = (value) => {
+  selectedAnswer.value = value
+}
+
+// Change color's button if selected answer is correct!
+const setButtonCorrect = (optionValue) => {
+  if (showResult.value && optionValue === selectedAnswer.value) {
+    if (optionValue === answer.value) {
+      return 'bg-green-600'
+    } else {
+      return 'bg-red-600'
+    }
+  }
+  return 'bg-button-bgColor'
 }
 </script>
 
@@ -173,7 +193,7 @@ const checkAnswer = (selectedOption) => {
         class="overflow-y-scroll h-4/5 bg-white rounded-2xl drop-shadow-2xl relative md:w-5/12 sm:w-6/12 mobile:w-11/12"
       >
         <!-- Close Button -->
-        <div class="sticky top-3 cursor-pointer" @click="close">
+        <div class="sticky top-3 cursor-pointer w-10" @click="close">
           <img
             class="w-6 sticky left-3"
             title="close"
@@ -184,7 +204,7 @@ const checkAnswer = (selectedOption) => {
         <div class="flex justify-center items-center">
           <div class="w-3/4">
             <h1
-              class="text-4xl font-bold text-center mb-6 font-alkatra text-title"
+              class="text-5xl pt-4 font-bold text-center mb-6 font-alkatra text-title"
             >
               HOW TO PLAY
             </h1>
@@ -252,6 +272,7 @@ const checkAnswer = (selectedOption) => {
           alt="left-arrow"
           @click="backToHome"
         />
+
         <div class="header flex justify-center items-center">
           <div
             class="categories text-title font-semibold font-outfit text-5xl flex items-center justify-center w-full px-17"
@@ -271,7 +292,7 @@ const checkAnswer = (selectedOption) => {
             <div
               v-for="(category, categoryIndex) in images"
               :key="category.categoryName"
-              class="category-item flex flex-col items-center md:mb-9"
+              class="category-item flex flex-col items-center md:mb-9 cursor-pointer"
               @click="showPlaygame(categoryIndex)"
             >
               <div
@@ -299,6 +320,7 @@ const checkAnswer = (selectedOption) => {
   >
     <div id="app" class="mx-auto max-w-screen-lg">
       <!-- <div class="-z-10 absolute">
+
         <img
           src="./assets/play-game/background.png"
           alt="background"
@@ -316,7 +338,7 @@ const checkAnswer = (selectedOption) => {
         >
           <div class="relative">
             <div
-              class="rounded-3xl bg-white bg-opacity-100 w-[200px] h-[403px] border border-1 border-black sm:w-[300px] md:w-[450px] md:h-[403px]"
+              class="rounded-3xl bg-white bg-opacity-100 w-[200px] h-[403px] sm:w-[300px] md:w-[450px] md:h-[403px]"
             >
               <div class="flex-col p-5">
                 <img
@@ -358,7 +380,7 @@ const checkAnswer = (selectedOption) => {
 
       <div class="header flex justify-between items-center py-4">
         <div class="play md:ml-4 absolute md:left-10 top-5 text-center">
-          <h1 class="text-title text-5xl font-outfit font-bold ">
+          <h1 class="text-title text-5xl font-outfit font-bold">
             Category:{{ currentCategory }}
           </h1>
         </div>
@@ -367,7 +389,7 @@ const checkAnswer = (selectedOption) => {
           <img
             src="./assets/play-game/setting.png"
             alt="setting-image"
-            class="w-12"
+            class="w-12 cursor-pointer"
             @click="openSetting"
           />
         </div>
@@ -386,18 +408,21 @@ const checkAnswer = (selectedOption) => {
         />
       </div>
 
-      <div class="grid grid-cols-2 gap-4 justify-center">
-        <button
-          v-for="(option, index) in options"
-          :key="index"
-          @click="checkAnswer(option.value)"
-          class="bg-button-bgColor text-white font-normal text-2xl py-3 px-6 h-20 rounded-md"
-        >
-          {{ option.value }}
-        </button>
-      </div>
+      <div class="flex flex-col justify-center items-center">
+        <div class="grid grid-cols-2 gap-5 justify-center w-3/4">
+          <button
+            v-for="(option, index) in options"
+            :key="index"
+            @click="checkAnswer(option.value)"
+            :class="setButtonCorrect(option.value)"
+            class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl h-20 rounded-md hover:drop-shadow-lg"
+          >
+            {{ option.value }}
+          </button>
+        </div>
 
-      <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
+        <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
+      </div>
     </div>
   </section>
 </template>
