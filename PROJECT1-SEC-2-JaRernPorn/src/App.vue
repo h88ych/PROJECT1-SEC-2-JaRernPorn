@@ -25,10 +25,8 @@ const closeSetting = () => {
         v-if="settingButton"
         class="fixed inset-0 z-50"
       >
-        <!-- class="w-full h-screen flex justify-center items-center backdrop-blur-[2px]" -->
-
         <div
-          class="w-full h-screen flex justify-center items-center bg-black bg-opacity-15"
+          class="w-full h-screen flex justify-center items-center bg-black bg-opacity-50"
         >
           <div class="relative">
             <div
