@@ -4,7 +4,7 @@ import images from '../data/categories'
 
 const answer = ref('')
 const showResult = ref(false)
-const selectedButton = ref('')
+const selectedAnswer = ref('')
 const resultMessage = ref('')
 const options = ref([])
 const currentIndex = ref(0)
@@ -83,19 +83,19 @@ const checkAnswer = (selectedOption) => {
   setTimeout(() => {
     currentIndex.value++ // เลื่อนไปรูปถัดไป
     showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
-  }, 1000) // รอ 2 วิ
+  }, 2000) // รอ 2 วิ
 
-  setSelectedButton(selectedOption)
+  setSelectedAnswer(selectedOption)
 }
 
-// track selected button by ref
-const setSelectedButton = (value) => {
-  selectedButton.value = value
+// track selected answer from user by ref
+const setSelectedAnswer = (value) => {
+  selectedAnswer.value = value
 }
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
-  if (showResult.value && optionValue === selectedButton.value) {
+  if (showResult.value && optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
       return 'bg-green-600'
     } else {
