@@ -193,19 +193,21 @@ const setButtonCorrect = (optionValue) => {
         />
       </div>
 
-      <div class="grid grid-cols-2 gap-4 justify-center">
-        <button
-          v-for="(option, index) in options"
-          :key="index"
-          @click="checkAnswer(option.value)"
-          :class="setButtonCorrect(option.value)"
-          class="bg-button-bgColor text-white font-normal text-2xl py-3 px-6 h-20 rounded-md"
-        >
-          {{ option.value }}
-        </button>
-      </div>
+      <div class="flex flex-col justify-center items-center">
+        <div class="grid grid-cols-2 gap-5 justify-center w-3/4">
+          <button
+            v-for="(option, index) in options"
+            :key="index"
+            @click="checkAnswer(option.value)"
+            :class="setButtonCorrect(option.value)"
+            class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl py-3 px-6 h-20 rounded-md hover:"
+          >
+            {{ option.value }}
+          </button>
+        </div>
 
-      <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
+        <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
+      </div>
     </div>
   </section>
 </template>
