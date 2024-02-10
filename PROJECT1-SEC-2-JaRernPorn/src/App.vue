@@ -242,8 +242,8 @@ const checkAnswer = (selectedOption) => {
   </section>
 
   <!-- Category Page -->
-  <section class="category " v-else-if="allPage.categoryPage">
-    <div class="p-7 bg-main-bgColor min-h-screen ">
+  <section class="category" v-else-if="allPage.categoryPage">
+    <div class="p-7 bg-main-bgColor min-h-screen">
       <header>
         <!-- Back to home Button -->
         <img
@@ -293,15 +293,18 @@ const checkAnswer = (selectedOption) => {
   </section>
 
   <!-- Play Game Page -->
-  <section class="playGame bg-main-bgColor min-h-screen" v-else-if="allPage.playgamePage">
-    <div id="app" class="mx-auto max-w-screen-lg ">
-      <div class="-z-10 absolute">
+  <section
+    class="playGame md:min-h-screen bg-main-bgColor"
+    v-else-if="allPage.playgamePage"
+  >
+    <div id="app" class="mx-auto max-w-screen-lg">
+      <!-- <div class="-z-10 absolute">
         <img
           src="./assets/play-game/background.png"
           alt="background"
           class="h-screen bg-cover bg-center"
         />
-      </div>
+      </div> -->
 
       <section
         id="settingButton"
@@ -354,8 +357,8 @@ const checkAnswer = (selectedOption) => {
       </section>
 
       <div class="header flex justify-between items-center py-4">
-        <div class="play ml-4 absolute left-10 top-5">
-          <h1 class="text-title text-5xl font-outfit font-bold">
+        <div class="play md:ml-4 absolute md:left-10 top-5 text-center">
+          <h1 class="text-title text-5xl font-outfit font-bold ">
             Category:{{ currentCategory }}
           </h1>
         </div>
