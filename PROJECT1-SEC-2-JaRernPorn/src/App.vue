@@ -243,7 +243,7 @@ const checkAnswer = (selectedOption) => {
 
   <!-- Category Page -->
   <section class="category " v-else-if="allPage.categoryPage">
-    <div class="p-7 bg-main-bgColor h-screen mobile:bg-main-bgColor mobile:h-screen">
+    <div class="p-7 bg-main-bgColor min-h-screen ">
       <header>
         <!-- Back to home Button -->
         <img
@@ -293,8 +293,8 @@ const checkAnswer = (selectedOption) => {
   </section>
 
   <!-- Play Game Page -->
-  <section class="playGame" v-else-if="allPage.playgamePage">
-    <div id="app" class="mx-auto max-w-screen-lg">
+  <section class="playGame bg-main-bgColor min-h-screen" v-else-if="allPage.playgamePage">
+    <div id="app" class="mx-auto max-w-screen-lg ">
       <div class="-z-10 absolute">
         <img
           src="./assets/play-game/background.png"
