@@ -334,7 +334,8 @@ const checkAnswer = (selectedOption) => {
                   <img
                     src="./assets/setting-features/resumeButton.png"
                     alt="resume button"
-                    class="resume button"
+                    class="resume button cursor-pointer"
+                    @click="closeSetting"
                   />
                   <img
                     src="./assets/setting-features/restartButton.png"
