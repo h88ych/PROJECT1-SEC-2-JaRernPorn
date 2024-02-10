@@ -9,6 +9,12 @@ const options = ref([])
 const currentIndex = ref(0)
 const currentIndexCate = ref(0)
 const settingButton = ref(false)
+const showAnswer=ref(false)
+
+const handleNextBtn=()=>{
+  showAnswer.value=false
+  currentIndex.value++
+}
 
 //all page will add to this
 const allPage = reactive({
@@ -103,8 +109,12 @@ const checkAnswer = (selectedOption) => {
   showResult.value = true
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
+    setTimeout(() => {
+    currentIndex.value++ // เลื่อนไปรูปถัดไป
+    showResult.value = false 
+  }, 2000)
   } else {
-    resultMessage.value = 'Wrong! The answer is ... ' + answer.value
+    showAnswer.value=true
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
@@ -114,10 +124,7 @@ const checkAnswer = (selectedOption) => {
     return resultMessage.value
   }
 
-  setTimeout(() => {
-    currentIndex.value++ // เลื่อนไปรูปถัดไป
-    showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
-  }, 2000) // รอ 2 วิ
+
 }
 </script>
 
@@ -297,7 +304,7 @@ const checkAnswer = (selectedOption) => {
     class="playGame md:min-h-screen bg-main-bgColor"
     v-else-if="allPage.playgamePage"
   >
-    <div id="app" class="mx-auto max-w-screen-lg">
+    <div id="app" class="mx-auto max-w-screen-lg relative">
       <!-- <div class="-z-10 absolute">
         <img
           src="./assets/play-game/background.png"
@@ -402,7 +409,7 @@ const checkAnswer = (selectedOption) => {
   </section>
 
 <!-- Wrong popup  -->
-  <section >
+  <section v-if="showAnswer" class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50">
     <div id="body" class="w-full h-screen p-5 relative">
       <div
         class="w-full h-full relative text-center flex justify-center items-center"
@@ -423,12 +430,13 @@ const checkAnswer = (selectedOption) => {
               <div
                 class="text-answer-fontColor font-NotoSansSC font-medium lowercase text-sm relative sm:text-2xl md:text-4xl"
               >
-                西瓜 (xīguā)
+                {{ answer }}
               </div>
             </div>
             <button
               class="text-sm text-brownColor font-semibold font-alkatra tracking-wider relative right-7 bottom-3 hover:text-answer-fontColor sm:right-[50px] sm:top-[18px] sm:text-2xl md:text-3xl lg:right-[60px]"
-            >
+              @click="handleNextBtn"
+              >
               NEXT
             </button>
           </div>
