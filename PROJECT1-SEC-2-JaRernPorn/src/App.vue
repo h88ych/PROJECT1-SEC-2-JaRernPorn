@@ -242,8 +242,8 @@ const checkAnswer = (selectedOption) => {
   </section>
 
   <!-- Category Page -->
-  <section class="category" v-else-if="allPage.categoryPage">
-    <div class="p-7 bg-main-bgColor h-screen overflow-y-hidden">
+  <section class="category " v-else-if="allPage.categoryPage">
+    <div class="p-7 bg-main-bgColor h-screen mobile:bg-main-bgColor mobile:h-screen">
       <header>
         <!-- Back to home Button -->
         <img
@@ -261,17 +261,17 @@ const checkAnswer = (selectedOption) => {
         </div>
       </header>
 
-      <div class="allbox flex content-center justify-center mt-14">
+      <div class="flex content-center justify-center mt-14">
         <div
-          class="boxes font-semibold text-black font-outfit flex flex-col flex-wrap"
+          class="font-semibold text-black font-outfit md:flex md:justify-center"
         >
           <div
-            class="firstLine flex flex-col md:flex-row space-x-0 md:space-x-72 pb-10 md:flex-wrap md:ml-80"
+            class="md:flex md:space-x-32 md:flex-wrap md:w-3/4 md:justify-center"
           >
             <div
               v-for="(category, categoryIndex) in images"
               :key="category.categoryName"
-              class="category-item flex flex-col items-center"
+              class="category-item flex flex-col items-center md:mb-9"
               @click="showPlaygame(categoryIndex)"
             >
               <div
