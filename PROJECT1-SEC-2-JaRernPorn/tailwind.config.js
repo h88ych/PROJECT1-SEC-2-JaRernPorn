@@ -38,6 +38,7 @@ export default {
       },
       padding: {
         title: '42px'
+        // title: '100px'
       },
       letterSpacing: {
         'sub-title': '2.8px'
