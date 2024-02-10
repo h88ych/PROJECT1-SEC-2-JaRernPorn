@@ -36,6 +36,7 @@ const images = [
       {
         id: 7,
         src: 'src/assets/play-game/fruits/watermelon-01.png',
+
         word: '西瓜 (xīguā)'
       }
     ]

@@ -4,6 +4,7 @@ import images from '../data/categories'
 
 const answer = ref('')
 const showResult = ref(false)
+const selectedButton = ref('')
 const resultMessage = ref('')
 const options = ref([])
 const currentIndex = ref(0)
@@ -62,8 +63,10 @@ const shuffle = (array) => {
   return array
 }
 
+// logic check answer
 const checkAnswer = (selectedOption) => {
   showResult.value = true
+  setSelectedButton(selectedOption)
   if (selectedOption === answer.value) {
     resultMessage.value = 'Correct!'
   } else {
@@ -80,7 +83,24 @@ const checkAnswer = (selectedOption) => {
   setTimeout(() => {
     currentIndex.value++ // เลื่อนไปรูปถัดไป
     showResult.value = false // ไม่แสดงผลลัพธ์จากข้อที่แล้ว
-  }, 2000) // รอ 2 วิ
+  }, 1000) // รอ 2 วิ
+}
+
+// track selected button by ref --> const selectedButton = ref('')
+const setSelectedButton = (value) => {
+  selectedButton.value = value
+}
+
+// Change color's button if selected answer is correct!
+const setButtonCorrect = (optionValue) => {
+  if (showResult.value && optionValue === selectedButton.value) {
+    if (optionValue === answer.value) {
+      return 'bg-green-600'
+    } else {
+      return 'bg-red-600'
+    }
+  }
+  return 'bg-button-bgColor'
 }
 </script>
 
@@ -89,7 +109,7 @@ const checkAnswer = (selectedOption) => {
     <div class="p-7 bg-main-bgColor h-screen overflow-y-hidden">
       <header>
         <img
-          class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out"
+          class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out cursor-pointer"
           src="./assets/categories/icon/left-arrow-01.png"
           alt="left-arrow"
         />
@@ -113,7 +133,7 @@ const checkAnswer = (selectedOption) => {
             <div
               v-for="(category, categoryIndex) in images"
               :key="category.categoryName"
-              class="category-item flex flex-col items-center"
+              class="category-item flex flex-col items-center cursor-pointer"
               @click="showPlaygame(categoryIndex)"
             >
               <div
@@ -147,7 +167,7 @@ const checkAnswer = (selectedOption) => {
       <div class="header flex justify-between items-center py-4">
         <div class="play ml-4 absolute left-10 top-5">
           <h1 class="text-title text-5xl font-outfit font-bold">
-            Category:{{ currentCategory }}
+            Category: {{ currentCategory }}
           </h1>
         </div>
 
@@ -178,6 +198,7 @@ const checkAnswer = (selectedOption) => {
           v-for="(option, index) in options"
           :key="index"
           @click="checkAnswer(option.value)"
+          :class="setButtonCorrect(option.value)"
           class="bg-button-bgColor text-white font-normal text-2xl py-3 px-6 h-20 rounded-md"
         >
           {{ option.value }}
