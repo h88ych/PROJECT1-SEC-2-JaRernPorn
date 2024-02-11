@@ -87,7 +87,9 @@ const restartButton = () => {
   allPage.resultPage = false
   allPage.playgamePage = true
   currentIndex.value = 0
-  currentIndexCate = 0
+  currentIndexCate.value = 0
+
+  closeSetting()
 }
 
 //mainMenuButton click event
