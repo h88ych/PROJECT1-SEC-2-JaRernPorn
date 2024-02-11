@@ -589,7 +589,7 @@ const setButtonCorrect = (optionValue) => {
 
       <div dir="rtl">
         <img
-          class="size-14 flex hover:scale-110 absolute top-3 right-7 start-0"
+          class="size-14 flex hover:scale-110 absolute top-3 right-7 start-0 cursor-pointer"
           src="./assets/result-page/home button.png"
           alt="home"
           @click="backToHome"
@@ -651,14 +651,14 @@ const setButtonCorrect = (optionValue) => {
         <div class="flex flex-wrap justify-center gap-3">
           <div class="flex justify-center">
             <div
-              class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+              class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center cursor-pointer hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
               @click="restartButton"
             >
               Play Again
             </div>
           </div>
           <div
-            class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+            class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center cursor-pointer hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
             @click="mainMenuButton"
           >
             Main Menu
