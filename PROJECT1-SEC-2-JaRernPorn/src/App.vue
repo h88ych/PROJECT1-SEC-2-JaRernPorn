@@ -80,7 +80,15 @@ const currentCategory = computed(() => {
 })
 
 //restartButton click event
-const restartButton = () => {}
+const restartButton = () => {
+  userAnswer.value = []
+  showEndgame.value = false
+  showResult.value = false
+  allPage.resultPage = false
+  allPage.playgamePage = true
+  currentIndex.value = 0
+  currentIndexCate = 0
+}
 
 //homeButton click event
 const homeButton = () => {
@@ -631,6 +639,7 @@ const setButtonCorrect = (optionValue) => {
           <div class="flex justify-center">
             <div
               class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+              @click="restartButton"
             >
               Play Again
             </div>
