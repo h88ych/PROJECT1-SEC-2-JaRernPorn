@@ -184,7 +184,7 @@ const setButtonCorrect = (optionValue) => {
     if (optionValue === answer.value) {
       return 'bg-green-600'
     } else {
-      return 'bg-red-600'
+      return ''
     }
   }
   return 'bg-button-bgColor'
@@ -227,7 +227,9 @@ const setButtonCorrect = (optionValue) => {
           <div class="font-alkatra font-medium leading-title">CHINESE</div>
         </div>
         <div class="text-black text-center">
-          <p class="font-outfit tracking-sub-title sm:text-sub-title-size">
+          <p
+            class="font-outfit font-medium tracking-sub-title sm:text-sub-title-size"
+          >
             LET'S PRACTICE YOUR CHINESE VOCABULARY
           </p>
         </div>
@@ -597,13 +599,13 @@ const setButtonCorrect = (optionValue) => {
       <div class="flex flex-col justify-center gap-4 md:gap-10">
         <div class="flex flex-col">
           <header
-            class="font-Alkarta font-semibold text-title text-7xl text-center md:text-8xl"
+            class="font-alkatra font-semibold text-title text-7xl text-center md:text-8xl"
           >
             Word List
           </header>
 
           <div
-            class="font-Outfit font-semibold text-md text-center tracking-subtitle sm:text-lg"
+            class="font-outfit font-semibold text-md text-center tracking-subtitle sm:text-lg"
           >
             You did great! Here are the result.
           </div>
@@ -612,7 +614,7 @@ const setButtonCorrect = (optionValue) => {
         <div class="flex flex-wrap justify-center gap-5">
           <section class="flex flex-col">
             <div
-              class="bg-white shadow-lg font-Outfit font-medium text-lg p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-80 md:h-96 md:overflow-visible"
+              class="bg-white shadow-lg font-outfit font-medium text-lg p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-80 md:h-96 md:overflow-visible"
             >
               Your Answer:
               <div class="border-b-2 border-black"></div>
@@ -632,7 +634,7 @@ const setButtonCorrect = (optionValue) => {
 
           <section class="flex flex-col">
             <div
-              class="bg-white shadow-lg font-Outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-visible"
+              class="bg-white shadow-lg font-outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-visible"
             >
               Answer:
               <div class="border-b-2 border-black"></div>
@@ -649,14 +651,14 @@ const setButtonCorrect = (optionValue) => {
         <div class="flex flex-wrap justify-center gap-3">
           <div class="flex justify-center">
             <div
-              class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+              class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
               @click="restartButton"
             >
               Play Again
             </div>
           </div>
           <div
-            class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+            class="flex justify-center bg-title rounded-lg font-outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
             @click="mainMenuButton"
           >
             Main Menu

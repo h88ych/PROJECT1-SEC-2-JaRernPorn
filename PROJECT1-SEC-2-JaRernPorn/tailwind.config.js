@@ -44,40 +44,36 @@ export default {
       letterSpacing: {
         'sub-title': '2.8px',
         title: '2.8px',
-      subtitle: '1.5px'
+        subtitle: '1.5px'
       },
-      screens:{
-        mobile:'320px',
-        sm:'480px', //phone
-        md:'768px',
-        lg:'1024px',
-        xl:'1440px' //desktop
+      screens: {
+        mobile: '320px',
+        sm: '480px', //phone
+        md: '768px',
+        lg: '1024px',
+        xl: '1440px' //desktop
       },
-      width:{
-        "catePage-20":"73px"
+      width: {
+        'catePage-20': '73px'
       },
-    
-    backgroundImage: {
-      'chinese-frame': "url('../assets/chinese-frame.png')"
-    },
-  
-    fontFamily: {
-      Alkarta: ['Alkatra', 'system-ui'],
-      Outfit: ['Outfit', 'sans-serif'],
-      NotoSansSC: ['Noto Sans SC', 'sans-serif']
-    },
-    lineHeight: {
-      title: '1.10',
-      list: '2.3',
-      listMobile: '2'
-    },
-    // padding: {
-    //   title: '100px'
-    // },
-  },
-  plugins: [
-    [require('daisyui'), require('tailwind-scrollbar')({ nocompatible: true })]
-  ]
 
-}
+      backgroundImage: {
+        'chinese-frame': "url('../assets/chinese-frame.png')"
+      },
+      lineHeight: {
+        title: '1.10',
+        list: '2.3',
+        listMobile: '2'
+      }
+      // padding: {
+      //   title: '100px'
+      // },
+    },
+    plugins: [
+      [
+        require('daisyui'),
+        require('tailwind-scrollbar')({ nocompatible: true })
+      ]
+    ]
+  }
 }
