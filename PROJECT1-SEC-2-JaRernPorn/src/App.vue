@@ -18,7 +18,7 @@ const userAnswer = ref([])
 const showEndgame = ref(false)
 const showResultPage = () => {
   showEndgame.value = false
-  resultPage.value = true
+  allPage.resultPage = true
 }
 
 const handleNextBtn = () => {
@@ -169,7 +169,6 @@ const checkAnswer = (selectedOption) => {
     setTimeout(() => {
       showResultPage()
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
-    allPage.resultPage = true
   }
 }
 
