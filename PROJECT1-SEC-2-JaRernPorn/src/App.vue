@@ -79,6 +79,16 @@ const currentCategory = computed(() => {
   return images[currentIndexCate.value].categoryName
 })
 
+//restartButton click event
+const restartButton = () => {}
+
+//homeButton click event
+const homeButton = () => {
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+}
+
 // รูปที่แสดงตอนเล่น
 const currentImage = computed(() => {
   if (currentIndex.value === images[currentIndexCate.value].groups.length) {
@@ -407,11 +417,13 @@ const setButtonCorrect = (optionValue) => {
                     src="./assets/setting-features/restartButton.png"
                     alt="restart button"
                     class="mb-2 cursor-pointer"
+                    @click="restartButton"
                   />
                   <img
                     src="./assets/setting-features/homebutton.png"
                     alt="home button"
                     class="cursor-pointer"
+                    @click="homeButton"
                   />
                 </div>
               </div>
