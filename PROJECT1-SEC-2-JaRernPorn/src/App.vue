@@ -90,6 +90,14 @@ const restartButton = () => {
   currentIndexCate = 0
 }
 
+//mainMenuButton click event
+const mainMenuButton = () => {
+  allPage.resultPage = false
+  userAnswer.value = []
+  currentIndex.value = 0
+  allPage.categoryPage = true
+}
+
 //homeButton click event
 const homeButton = () => {
   allPage.playgamePage = false
@@ -646,6 +654,7 @@ const setButtonCorrect = (optionValue) => {
           </div>
           <div
             class="flex justify-center bg-title rounded-lg font-Outfit font-semibold text-lg p-4 text-white uppercase text-center hover:bg-button-bgColor sm:text-lg sm:p-3 sm:w-32"
+            @click="mainMenuButton"
           >
             Main Menu
           </div>
