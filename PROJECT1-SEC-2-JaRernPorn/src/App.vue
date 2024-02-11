@@ -57,6 +57,7 @@ const close = () => {
 const backToHome = () => {
   allPage.homePage = true
   allPage.categoryPage = false
+  allPage.resultPage = false
 }
 
 const showPlaygame = (index) => {
@@ -87,7 +88,6 @@ const restartButton = () => {
   allPage.resultPage = false
   allPage.playgamePage = true
   currentIndex.value = 0
-  currentIndexCate.value = 0
 
   closeSetting()
 }
@@ -105,6 +105,8 @@ const homeButton = () => {
   allPage.playgamePage = false
   allPage.categoryPage = false
   allPage.homePage = true
+
+  closeSetting()
 }
 
 // รูปที่แสดงตอนเล่น
@@ -388,8 +390,7 @@ const setButtonCorrect = (optionValue) => {
     v-else-if="allPage.playgamePage"
   >
     <div id="app" class="mx-auto max-w-screen-lg relative">
-      <!-- <div class="-z-10 absolute">
-
+      <!-- <div class="absolute">
         <img
           src="./assets/play-game/background.png"
           alt="background"
