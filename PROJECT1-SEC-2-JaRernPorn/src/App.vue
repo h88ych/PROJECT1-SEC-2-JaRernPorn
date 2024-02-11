@@ -589,7 +589,7 @@ const setButtonCorrect = (optionValue) => {
 
       <div dir="rtl">
         <img
-          class="size-14 flex hover:scale-110 absolute top-3 right-7 start-0 cursor-pointer"
+          class="size-14 flex hover:scale-110 absolute top-3 right-7 cursor-pointer"
           src="./assets/result-page/home button.png"
           alt="home"
           @click="backToHome"
