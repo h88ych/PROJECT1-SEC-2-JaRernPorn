@@ -3,14 +3,12 @@ import { reactive, ref, computed } from 'vue'
 import categories from '../data/categories'
 
 const answer = ref('')
-const showResult = ref(false)
 const isChecking = ref(false)
 const selectedAnswer = ref('')
 const options = ref([])
 const currentIndexItem = ref(0)
 const currentIndexCate = ref(0)
 const settingButton = ref(false)
-//for result page
 const userAnswer = ref([])
 
 //init all values to default
@@ -177,7 +175,6 @@ const shuffle = (array) => {
 // logic check answer
 const checkAnswer = (selectedOption) => {
   isChecking.value = true
-  showResult.value = true
   userAnswer.value.push(selectedOption)
   console.log(userAnswer.value)
   console.log(currentIndexItem.value)
@@ -186,7 +183,6 @@ const checkAnswer = (selectedOption) => {
     setSelectedAnswer(selectedOption)
     setTimeout(() => {
       currentIndexItem.value++ // เลื่อนไปรูปถัดไป
-      showResult.value = false
       isChecking.value = false
     }, 1000)
 
@@ -197,7 +193,7 @@ const checkAnswer = (selectedOption) => {
       setTimeout(() => {
         allPage.playgamePage = false
         popUp.showEndgame = true
-      }, 999)
+      }, 1000)
       setTimeout(() => {
         showWordListPage()
       }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
@@ -214,7 +210,7 @@ const setSelectedAnswer = (value) => {
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
-  if (showResult.value && optionValue === selectedAnswer.value) {
+  if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
       return 'bg-green-600'
     } else {
