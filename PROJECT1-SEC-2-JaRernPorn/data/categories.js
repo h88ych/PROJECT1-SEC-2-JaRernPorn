@@ -5,43 +5,43 @@ const categories = [
     items: [
       {
         id: 1,
-        src: 'src/assets/play-game/fruits/apple-01.png',
+        src: 'src/assets/play-game/fruits/apple.png',
         word: '苹果 (píngguǒ)',
         meaning: 'Apple'
       },
       {
         id: 2,
-        src: 'src/assets/play-game/fruits/banana-01.png',
+        src: 'src/assets/play-game/fruits/banana.png',
         word: '香蕉 (xiāngjiāo)',
         meaning: 'Banana'
       },
       {
         id: 3,
-        src: 'src/assets/play-game/fruits/mango-01.png',
+        src: 'src/assets/play-game/fruits/mango.png',
         word: '芒果 (mángguǒ)',
         meaning: 'Mango'
       },
       {
         id: 4,
-        src: 'src/assets/play-game/fruits/grape-01.png',
+        src: 'src/assets/play-game/fruits/grape.png',
         word: '葡萄 (pú táo)',
         meaning: 'Grape'
       },
       {
         id: 5,
-        src: 'src/assets/play-game/fruits/pineapple-01.png',
+        src: 'src/assets/play-game/fruits/pineapple.png',
         word: '菠萝 (bōluó)',
         meaning: 'Pineapple'
       },
       {
         id: 6,
-        src: 'src/assets/play-game/fruits/strawberry-01.png',
+        src: 'src/assets/play-game/fruits/strawberry.png',
         word: '草莓 (cǎoméi)',
         meaning: 'Strawberry'
       },
       {
         id: 7,
-        src: 'src/assets/play-game/fruits/watermelon-01.png',
+        src: 'src/assets/play-game/fruits/watermelon.png',
         word: '西瓜 (xīguā)',
         meaning: 'Watermelon'
       }
@@ -54,43 +54,43 @@ const categories = [
     items: [
       {
         id: 1,
-        src: 'src/assets/play-game/animal/cat-01.png',
+        src: 'src/assets/play-game/animal/cat.png',
         word: '猫 (Māo)',
         meaning: 'Cat'
       },
       {
         id: 2,
-        src: 'src/assets/play-game/animal/dog-01.png',
+        src: 'src/assets/play-game/animal/dog.png',
         word: '狗 (gǒu)',
         meaning: 'dog'
       },
       {
         id: 3,
-        src: 'src/assets/play-game/animal/elephat-01.png',
+        src: 'src/assets/play-game/animal/elephat.png',
         word: '大象 (dà xiàng)',
         meaning: 'Elephant'
       },
       {
         id: 4,
-        src: 'src/assets/play-game/animal/lion-01.png',
+        src: 'src/assets/play-game/animal/lion.png',
         word: '狮子	(Shīzi)',
         meaning: 'Lion'
       },
       {
         id: 5,
-        src: 'src/assets/play-game/animal/monkey-01.png',
+        src: 'src/assets/play-game/animal/monkey.png',
         word: '猴子 (hóuzi)',
         meaning: 'Monkey'
       },
       {
         id: 6,
-        src: 'src/assets/play-game/animal/rabbit-01.png',
+        src: 'src/assets/play-game/animal/rabbit.png',
         word: '兔子 (Tùzǐ)',
         meaning: 'Rabbit'
       },
       {
         id: 7,
-        src: 'src/assets/play-game/animal/tiger-01.png',
+        src: 'src/assets/play-game/animal/tiger.png',
         word: '老虎	(Lǎohǔ)',
         meaning: 'Tiger'
       }
@@ -103,43 +103,43 @@ const categories = [
     items: [
       {
         id: 1,
-        src: 'src/assets/play-game/color/black-01.png',
+        src: 'src/assets/play-game/color/black.png',
         word: '黑色 (hēi sè)',
         meaning: 'Black'
       },
       {
         id: 2,
-        src: 'src/assets/play-game/color/blue-01.png',
+        src: 'src/assets/play-game/color/blue.png',
         word: '蓝色 (lán sè)',
         meaning: 'Blue'
       },
       {
         id: 3,
-        src: 'src/assets/play-game/color/green-01.png',
+        src: 'src/assets/play-game/color/green.png',
         word: '绿色 (lǜ sè)',
         meaning: 'Green'
       },
       {
         id: 4,
-        src: 'src/assets/play-game/color/orange-01.png',
+        src: 'src/assets/play-game/color/orange.png',
         word: '橙色 (chéng sè)',
         meaning: 'Orange'
       },
       {
         id: 5,
-        src: 'src/assets/play-game/color/pink-01.png',
+        src: 'src/assets/play-game/color/pink.png',
         word: '粉红色 (fěn hóng sè)',
         meaning: 'Pink'
       },
       {
         id: 6,
-        src: 'src/assets/play-game/color/purple-01.png',
+        src: 'src/assets/play-game/color/purple.png',
         word: '紫色 (zǐ sè)',
         meaning: 'Purple'
       },
       {
         id: 7,
-        src: 'src/assets/play-game/color/yellow-01.png',
+        src: 'src/assets/play-game/color/yellow.png',
         word: '黄色 (huáng sè)',
         meaning: 'Yellow'
       }
@@ -201,43 +201,43 @@ const categories = [
     items: [
       {
         id: 1,
-        src: 'src/assets/play-game/number/seven-01.png',
+        src: 'src/assets/play-game/number/seven.png',
         word: '七 (qī)',
         meaning: 'Seven'
       },
       {
         id: 2,
-        src: 'src/assets/play-game/number/two-01.png',
+        src: 'src/assets/play-game/number/two.png',
         word: '二 (èr)',
         meaning: 'Two'
       },
       {
         id: 3,
-        src: 'src/assets/play-game/number/five-01.png',
+        src: 'src/assets/play-game/number/five.png',
         word: '五 (wǔ)',
         meaning: 'Five'
       },
       {
         id: 4,
-        src: 'src/assets/play-game/number/zero-01.png',
+        src: 'src/assets/play-game/number/zero.png',
         word: '零 (líng)',
         meaning: 'Zero'
       },
       {
         id: 5,
-        src: 'src/assets/play-game/number/one-01.png',
+        src: 'src/assets/play-game/number/one.png',
         word: '一 (yī)',
         meaning: 'One'
       },
       {
         id: 6,
-        src: 'src/assets/play-game/number/ten-01.png',
+        src: 'src/assets/play-game/number/ten.png',
         word: '十 (shí)',
         meaning: 'Ten'
       },
       {
         id: 7,
-        src: 'src/assets/play-game/number/eight-01.png',
+        src: 'src/assets/play-game/number/eight.png',
         word: '八 (bā)',
         meaning: 'Eight'
       }

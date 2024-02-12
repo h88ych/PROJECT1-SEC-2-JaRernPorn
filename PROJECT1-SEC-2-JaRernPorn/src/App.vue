@@ -2,6 +2,7 @@
 import { reactive, ref, computed } from 'vue'
 import categories from '../data/categories'
 
+//
 const answer = ref('')
 const isChecking = ref(false)
 const selectedAnswer = ref('')
@@ -350,7 +351,7 @@ const setButtonCorrect = (optionValue) => {
         <!-- Back to home Button -->
         <img
           class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out cursor-pointer"
-          src="./assets/categories/icon/left-arrow-01.png"
+          src="./assets/categories/icon/left-arrow.png"
           alt="left-arrow"
           @click="backToHome"
         />
@@ -481,11 +482,11 @@ const setButtonCorrect = (optionValue) => {
         </div>
       </section>
 
-      <div id="bg-image" class="flex justify-center my-12">
+      <div id="pic-frame" class="flex justify-center my-12">
         <img
           class="w-96 my-8"
-          src="./assets/play-game/bg-image.png"
-          alt="bg-image"
+          src="./assets/play-game/pic-frame.png"
+          alt="frame for picture while playing game"
         />
         <img
           class="absolute font-outfit mb-4 mx-8 my-20 size-48"
@@ -525,9 +526,9 @@ const setButtonCorrect = (optionValue) => {
       >
         <div class="text-center relative translate-middle text-white">
           <img
-            src="./assets/wrongPopup/Frame.png"
+            src="./assets/wrongPopup/bear-frame.png"
             alt="Frame chinese theme"
-            class="w-10/12 mx-auto"
+            class="w-6/12 mx-auto"
           />
           <div
             class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex-col space-y-14"
@@ -590,13 +591,13 @@ const setButtonCorrect = (optionValue) => {
     <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
-        src="./assets/result-page/result-top.png"
+        src="./assets/result-page/frame-top.png"
         alt="result-deco-top"
       />
       <div></div>
       <img
         class="size-28 absolute right-5 bottom-3 md:size-36"
-        src="./assets/result-page/result-bottom.png"
+        src="./assets/result-page/frame-bottom.png"
         alt="result-deco-bottom"
       />
 
