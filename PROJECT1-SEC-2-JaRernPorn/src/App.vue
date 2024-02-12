@@ -100,7 +100,6 @@ const handleNextBtn = () => {
       showResultPage()
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
-
 }
 
 const currentCategory = computed(() => {
@@ -188,19 +187,19 @@ const checkAnswer = (selectedOption) => {
 
     if (
       currentIndex.value ===
-      images[currentIndexCate.value].groups.length -1
+      images[currentIndexCate.value].groups.length - 1
     ) {
-      allPage.playgamePage = false
-      popUp.showEndgame = true
+      setTimeout(() => {
+        allPage.playgamePage = false
+        popUp.showEndgame = true
+      }, 999)
       setTimeout(() => {
         showResultPage()
-      }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+      }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
     }
-
   } else {
     popUp.showAnswer = true
   }
-
 }
 
 // track selected answer from user by ref
