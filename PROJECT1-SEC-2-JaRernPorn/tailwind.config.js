@@ -65,9 +65,6 @@ export default {
         list: '2.3',
         listMobile: '2'
       }
-      // padding: {
-      //   title: '100px'
-      // },
     },
     plugins: [
       [

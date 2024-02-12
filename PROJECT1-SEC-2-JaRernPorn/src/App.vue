@@ -1,214 +1,210 @@
 <script setup>
-import { reactive, ref, computed } from 'vue'
-import images from '../data/categories'
+import { reactive, ref, computed } from "vue";
+import images from "../data/categories";
 
-const answer = ref('')
-const showResult = ref(false)
-const selectedAnswer = ref('')
-const resultMessage = ref('')
-const options = ref([])
-const currentIndex = ref(0)
-const currentIndexCate = ref(0)
-const settingButton = ref(false)
-const showAnswer = ref(false)
-
+const answer = ref("");
+const showResult = ref(false);
+const isChecking = ref(false);
+const selectedAnswer = ref("");
+const options = ref([]);
+const currentIndex = ref(0);
+const currentIndexCate = ref(0);
+const settingButton = ref(false);
 //for result page
-const userAnswer = ref([])
+const userAnswer = ref([]);
 
-const showEndgame = ref(false)
-const showResultPage = () => {
-  showEndgame.value = false
-  allPage.resultPage = true
-}
-
-const handleNextBtn = () => {
-  showAnswer.value = false
-  currentIndex.value++
-}
+//init all values to default
+const init = () => {
+  settingButton.value = false;
+  currentIndex.value = 0;
+  currentIndexCate.value = 0;
+  userAnswer.value = [];
+  showResult.value = false;
+  isChecking.value = false;
+  selectedAnswer.value = "";
+  options.value = [];
+  answer.value = "";
+};
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
-  categoryPage: '',
-  playgamePage: '',
-  isPopUp: '',
-  resultPage: ''
-})
+  categoryPage: false,
+  playgamePage: false,
+  resultPage: false,
+});
+
+//pop up page will add to this
+const popUp = reactive({
+  showHowToPlayPage: false,
+  showAnswer: false,
+  showEndgame: false,
+});
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false
-  allPage.categoryPage = true
-}
+  allPage.homePage = false;
+  allPage.categoryPage = true;
+};
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true
-  allPage.isPopUp = true
-}
+  allPage.homePage = true;
+  popUp.showHowToPlayPage = true;
+};
 
 //closeButton click event
-const close = () => {
-  allPage.homePage = true
-  allPage.isPopUp = false
-}
+const closeHowToPlay = () => {
+  allPage.homePage = true;
+  popUp.showHowToPlayPage = false;
+};
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true
-  allPage.categoryPage = false
-  allPage.resultPage = false
-}
+  allPage.homePage = true;
+  allPage.categoryPage = false;
+  allPage.resultPage = false;
+  init();
+};
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index
-  allPage.playgamePage = true
-  allPage.categoryPage = false
-}
+  currentIndexCate.value = index;
+  allPage.playgamePage = true;
+  allPage.categoryPage = false;
+};
+
+const showResultPage = () => {
+  popUp.showEndgame = false;
+  allPage.resultPage = true;
+};
 
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true
-}
+  settingButton.value = true;
+};
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false
-}
+  settingButton.value = false;
+};
+
+const handleNextBtn = () => {
+  popUp.showAnswer = false;
+  currentIndex.value++;
+  isChecking.value = false;
+};
 
 const currentCategory = computed(() => {
-  return images[currentIndexCate.value].categoryName
-})
+  return images[currentIndexCate.value].categoryName;
+});
 
 //restartButton click event
 const restartButton = () => {
-  userAnswer.value = []
-  showEndgame.value = false
-  showResult.value = false
-  allPage.resultPage = false
-  allPage.playgamePage = true
-  currentIndex.value = 0
-
-  closeSetting()
-}
+  console.log("restart");
+  popUp.showEndgame = false;
+  allPage.resultPage = false;
+  allPage.playgamePage = true;
+  init();
+  closeSetting();
+};
 
 //mainMenuButton click event
 const mainMenuButton = () => {
-  allPage.resultPage = false
-  userAnswer.value = []
-  currentIndex.value = 0
-  allPage.categoryPage = true
-}
+  allPage.resultPage = false;
+  allPage.categoryPage = true;
+  init();
+};
 
 //homeButton click event
 const homeButton = () => {
-  allPage.playgamePage = false
-  allPage.categoryPage = false
-  allPage.homePage = true
-
-  closeSetting()
-}
+  allPage.playgamePage = false;
+  allPage.categoryPage = false;
+  allPage.homePage = true;
+  init();
+  // closeSetting();
+};
 
 // รูปที่แสดงตอนเล่น
 const currentImage = computed(() => {
   if (currentIndex.value === images[currentIndexCate.value].groups.length) {
-    return '' // เกมสิ้นสุด
+    return ""; // เกมสิ้นสุด
   }
 
-  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word
-  options.value = generateOptions(answer.value)
-  return images[currentIndexCate.value].groups[currentIndex.value].src
-})
+  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word;
+  options.value = generateOptions(answer.value);
+  return images[currentIndexCate.value].groups[currentIndex.value].src;
+});
 
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = []
-  optionsArray.push({ id: 1, value: answer })
+  const optionsArray = [];
+  optionsArray.push({ id: 1, value: answer });
   while (optionsArray.length < 4) {
     const randomWord =
       images[currentIndexCate.value].groups[
         Math.floor(Math.random() * images[currentIndexCate.value].groups.length)
-      ].word
+      ].word;
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
     }
   }
-  return shuffle(optionsArray)
-}
+  return shuffle(optionsArray);
+};
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return array
-}
+  return array;
+};
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  showResult.value = true
-  userAnswer.value.push(selectedOption)
-  console.log(userAnswer.value)
+  isChecking.value = true;
+  showResult.value = true;
+  userAnswer.value.push(selectedOption);
+  console.log(userAnswer.value);
 
   if (selectedOption === answer.value) {
     // resultMessage.value = 'Correct!'
-    setSelectedAnswer(selectedOption)
+    setSelectedAnswer(selectedOption);
     setTimeout(() => {
-      currentIndex.value++ // เลื่อนไปรูปถัดไป
-      showResult.value = false
-    }, 2000)
+      currentIndex.value++; // เลื่อนไปรูปถัดไป
+      showResult.value = false;
+      isChecking.value = false;
+    }, 1000);
   } else {
-    showAnswer.value = true
+    popUp.showAnswer = true;
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
-    allPage.playgamePage = false
-    showEndgame.value = true
+    allPage.playgamePage = false;
+    popUp.showEndgame = true;
     setTimeout(() => {
-      showResultPage()
-    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+      showResultPage();
+    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
   }
-}
+};
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value
-}
+  selectedAnswer.value = value;
+};
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (showResult.value && optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return 'bg-green-600'
+      return "bg-green-600";
     } else {
-      return ''
+      return "";
     }
   }
-  return 'bg-button-bgColor'
-}
-//all page will add to this
-// const allPage = reactive({
-//   homePage: false,
-//   categoryPage: '',
-//   resultPage: ''
-// })
-
-// //play button click event
-// const playButton = () => {
-//   allPage.homePage = false
-//   allPage.categoryPage = true
-//   allPage.resultPage = false
-// }
-
-// //backToHome button click event
-// const backToHome = () => {
-//   allPage.homePage = true
-//   allPage.categoryPage = false
-//   allPage.resultPage = false
-
-// }
+  return "bg-button-bgColor";
+};
 </script>
 
 <template>
@@ -216,7 +212,7 @@ const setButtonCorrect = (optionValue) => {
   <section class="homePage" v-if="allPage.homePage">
     <div
       class="h-screen w-full bg-main-bgColor p-5"
-      :class="{ absolute: allPage.isPopUp }"
+      :class="{ absolute: popUp.showHowToPlayPage }"
     >
       <div class="border-double border-8 border-title box-border h-full w-full">
         <div
@@ -258,14 +254,14 @@ const setButtonCorrect = (optionValue) => {
 
     <!-- How To Play Page -->
     <div
-      class="flex justify-center items-center h-screen"
-      v-if="allPage.isPopUp"
+      class="flex justify-center items-center h-screen bg-black bg-opacity-50 absolute"
+      v-if="popUp.showHowToPlayPage"
     >
       <div
         class="overflow-y-scroll h-4/5 bg-white rounded-2xl drop-shadow-2xl relative md:w-5/12 sm:w-6/12 mobile:w-11/12"
       >
         <!-- Close Button -->
-        <div class="sticky top-3 cursor-pointer w-10" @click="close">
+        <div class="sticky top-3 cursor-pointer w-10" @click="closeHowToPlay">
           <img
             class="w-6 sticky left-3"
             title="close"
@@ -335,7 +331,7 @@ const setButtonCorrect = (optionValue) => {
 
   <!-- Category Page -->
   <section class="category" v-else-if="allPage.categoryPage">
-    <div class="p-7 bg-main-bgColor min-h-screen">
+    <div class="p-7 bg-main-bgColor min-h-screen ">
       <header>
         <!-- Back to home Button -->
         <img
@@ -399,6 +395,25 @@ const setButtonCorrect = (optionValue) => {
         />
       </div> -->
 
+      <div class="header flex justify-between items-center py-4">
+        <div class="play md:ml-4 absolute md:left-10 top-5 text-center">
+          <h1 class="text-title text-5xl font-outfit font-bold">
+            Category:{{ currentCategory }}
+          </h1>
+        </div>
+
+        <div
+          class="setting mr-4 absolute right-10 top-6 hover:scale-125 hover:transition-all duration-300 ease-in-out"
+        >
+          <img
+            src="./assets/play-game/setting.png"
+            alt="setting-image"
+            class="w-12 cursor-pointer"
+            @click="openSetting"
+          />
+        </div>
+      </div>
+
       <section
         id="settingButton"
         v-if="settingButton"
@@ -430,19 +445,19 @@ const setButtonCorrect = (optionValue) => {
                   <img
                     src="./assets/setting-features/resumeButton.png"
                     alt="resume button"
-                    class="resume button cursor-pointer"
+                    class="resume button cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="closeSetting"
                   />
                   <img
                     src="./assets/setting-features/restartButton.png"
-                    alt="restart button"
-                    class="mb-2 cursor-pointer"
+                    alt="restart button "
+                    class="mb-2 cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="restartButton"
                   />
                   <img
                     src="./assets/setting-features/homebutton.png"
                     alt="home button"
-                    class="cursor-pointer"
+                    class="cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="homeButton"
                   />
                 </div>
@@ -451,23 +466,6 @@ const setButtonCorrect = (optionValue) => {
           </div>
         </div>
       </section>
-
-      <div class="header flex justify-between items-center py-4">
-        <div class="play md:ml-4 absolute md:left-10 top-5 text-center">
-          <h1 class="text-title text-5xl font-outfit font-bold">
-            Category:{{ currentCategory }}
-          </h1>
-        </div>
-
-        <div class="setting mr-4 absolute right-10 top-6 hover:scale-125">
-          <img
-            src="./assets/play-game/setting.png"
-            alt="setting-image"
-            class="w-12 cursor-pointer"
-            @click="openSetting"
-          />
-        </div>
-      </div>
 
       <div id="bg-image" class="flex justify-center my-12">
         <img
@@ -487,22 +485,24 @@ const setButtonCorrect = (optionValue) => {
           <button
             v-for="(option, index) in options"
             :key="index"
-            @click="checkAnswer(option.value)"
+            @click="
+              () => {
+                if (!isChecking) checkAnswer(option.value);
+              }
+            "
             :class="setButtonCorrect(option.value)"
             class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl h-20 rounded-md hover:drop-shadow-lg"
           >
             {{ option.value }}
           </button>
         </div>
-
-        <p class="mt-4" v-if="showResult">{{ resultMessage }}</p>
       </div>
     </div>
   </section>
 
   <!-- Wrong popup  -->
   <section
-    v-if="showAnswer"
+    v-if="popUp.showAnswer"
     class="absolute inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50"
   >
     <div id="body" class="w-full h-screen p-5 relative">
@@ -541,7 +541,7 @@ const setButtonCorrect = (optionValue) => {
   </section>
 
   <!-- end game page  -->
-  <section v-if="showEndgame">
+  <section v-if="popUp.showEndgame">
     <div id="body" class="bg-main-bgColor w-full h-screen p-5 relative">
       <div
         class="border-double border-8 border-title box-border w-full h-full relative text-center flex justify-center items-center"
@@ -588,7 +588,7 @@ const setButtonCorrect = (optionValue) => {
 
       <div dir="rtl">
         <img
-          class="size-14 flex hover:scale-110 absolute top-3 right-7 cursor-pointer"
+          class="size-14 flex hover:scale-110 absolute top-3 right-7 cursor-pointer hover:transition-all duration-300 ease-in-out"
           src="./assets/result-page/home button.png"
           alt="home"
           @click="backToHome"
@@ -622,7 +622,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== images[currentIndexCate].groups[index].word
+                    userAns !== images[currentIndexCate].groups[index].word,
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
