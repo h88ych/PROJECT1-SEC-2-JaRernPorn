@@ -100,6 +100,7 @@ const handleNextBtn = () => {
       showResultPage()
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
+
 }
 
 const currentCategory = computed(() => {
@@ -187,7 +188,7 @@ const checkAnswer = (selectedOption) => {
 
     if (
       currentIndex.value ===
-      images[currentIndexCate.value].groups.length 
+      images[currentIndexCate.value].groups.length -1
     ) {
       allPage.playgamePage = false
       popUp.showEndgame = true
@@ -199,6 +200,7 @@ const checkAnswer = (selectedOption) => {
   } else {
     popUp.showAnswer = true
   }
+
 }
 
 // track selected answer from user by ref
@@ -645,7 +647,7 @@ const setButtonCorrect = (optionValue) => {
 
           <section class="flex flex-col">
             <div
-              class="bg-white shadow-lg font-outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-visible"
+              class="bg-white shadow-lg font-outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-x-auto"
             >
               Answer:
               <div class="border-b-2 border-black"></div>
