@@ -550,7 +550,7 @@ const setButtonCorrect = (optionValue) => {
           <img
             src="./assets/endgame-page/complimentFrame.png"
             alt="Picture that said Excellent!"
-            class="mx-auto my-60"
+            class="mx-auto my-50"
           />
           <div
             class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
