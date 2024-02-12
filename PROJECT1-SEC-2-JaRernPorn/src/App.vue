@@ -2,7 +2,6 @@
 import { reactive, ref, computed } from 'vue'
 import categories from '../data/categories'
 
-//
 const answer = ref('')
 const isChecking = ref(false)
 const selectedAnswer = ref('')
