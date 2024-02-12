@@ -1,6 +1,6 @@
 <script setup>
-import { reactive, ref, computed } from "vue";
-import categories from "../data/categories";
+import { reactive, ref, computed } from 'vue'
+import categories from '../data/categories'
 
 //word data
 const answer = ref('')
@@ -21,212 +21,212 @@ const userAnswer = ref([])
 
 //init all values to default
 const init = () => {
-  settingButton.value = false;
-  currentIndexItem.value = 0;
-  currentIndexCate.value = 0;
-  userAnswer.value = [];
-  selectedAnswer.value = "";
-  options.value = [];
-  answer.value = "";
-};
+  settingButton.value = false
+  currentIndexItem.value = 0
+  currentIndexCate.value = 0
+  userAnswer.value = []
+  selectedAnswer.value = ''
+  options.value = []
+  answer.value = ''
+}
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  wordListPage: false,
-});
+  wordListPage: false
+})
 
 //pop up page will add to this
 const popUp = reactive({
   showHowToPlayPage: false,
   showAnswer: false,
-  showEndgame: false,
-});
+  showEndgame: false
+})
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false;
-  allPage.categoryPage = true;
-};
+  allPage.homePage = false
+  allPage.categoryPage = true
+}
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = true;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = true
+}
 
 //closeButton click event
 const closeHowToPlay = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = false;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = false
+}
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true;
-  allPage.categoryPage = false;
-  allPage.wordListPage = false;
-  init();
-};
+  allPage.homePage = true
+  allPage.categoryPage = false
+  allPage.wordListPage = false
+  init()
+}
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index;
-  allPage.playgamePage = true;
-  allPage.categoryPage = false;
-};
+  currentIndexCate.value = index
+  allPage.playgamePage = true
+  allPage.categoryPage = false
+}
 
 const showWordListPage = () => {
-  popUp.showEndgame = false;
-  allPage.wordListPage = true;
-};
+  popUp.showEndgame = false
+  allPage.wordListPage = true
+}
 
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true;
-};
+  settingButton.value = true
+}
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false;
-};
+  settingButton.value = false
+}
 
 const handleNextBtn = () => {
-  popUp.showAnswer = false;
-  isChecking.value = false;
-  currentIndexItem.value++;
+  popUp.showAnswer = false
+  isChecking.value = false
+  currentIndexItem.value++
 
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    allPage.playgamePage = false;
-    popUp.showEndgame = true;
+    allPage.playgamePage = false
+    popUp.showEndgame = true
     setTimeout(() => {
-      showWordListPage();
-    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
+      showWordListPage()
+    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
-};
+}
 
 //restartButton click event
 const restartButton = () => {
-  popUp.showEndgame = false;
-  allPage.wordListPage = false;
-  allPage.playgamePage = true;
-  userAnswer.value = [];
-  currentIndexItem.value = 0;
-  selectedAnswer.value = "";
-  closeSetting();
-};
+  popUp.showEndgame = false
+  allPage.wordListPage = false
+  allPage.playgamePage = true
+  userAnswer.value = []
+  currentIndexItem.value = 0
+  selectedAnswer.value = ''
+  closeSetting()
+}
 
 //mainMenuButton click event
 const mainMenuButton = () => {
-  allPage.wordListPage = false;
-  allPage.categoryPage = true;
-  init();
-};
+  allPage.wordListPage = false
+  allPage.categoryPage = true
+  init()
+}
 
 //homeButton click event
 const homeButton = () => {
-  allPage.playgamePage = false;
-  allPage.categoryPage = false;
-  allPage.homePage = true;
-  init();
-};
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+  init()
+}
 
 const currentCategory = computed(() => {
-  return categories[currentIndexCate.value].name;
-});
+  return categories[currentIndexCate.value].name
+})
 
 // รูปที่แสดงตอนเล่น
 const currentQuiz = computed(() => {
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    return ""; // เกมสิ้นสุด
+    return '' // เกมสิ้นสุด
   }
 
   answer.value =
-    categories[currentIndexCate.value].items[currentIndexItem.value].word;
-  options.value = generateOptions(answer.value);
-  return categories[currentIndexCate.value].items[currentIndexItem.value].src;
-});
+    categories[currentIndexCate.value].items[currentIndexItem.value].word
+  options.value = generateOptions(answer.value)
+  return categories[currentIndexCate.value].items[currentIndexItem.value].src
+})
 
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = [];
-  optionsArray.push({ id: 1, value: answer });
+  const optionsArray = []
+  optionsArray.push({ id: 1, value: answer })
   while (optionsArray.length < 4) {
     const randomWord =
       categories[currentIndexCate.value].items[
         Math.floor(
           Math.random() * categories[currentIndexCate.value].items.length
         )
-      ].word;
+      ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
     }
   }
-  return shuffle(optionsArray);
-};
+  return shuffle(optionsArray)
+}
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
   }
-  return array;
-};
+  return array
+}
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  isChecking.value = true;
-  userAnswer.value.push(selectedOption);
-  console.log(userAnswer.value);
-  console.log(currentIndexItem.value);
+  isChecking.value = true
+  userAnswer.value.push(selectedOption)
+  console.log(userAnswer.value)
+  console.log(currentIndexItem.value)
 
   if (selectedOption === answer.value) {
-    setSelectedAnswer(selectedOption);
+    setSelectedAnswer(selectedOption)
     setTimeout(() => {
-      currentIndexItem.value++; // เลื่อนไปรูปถัดไป
-      isChecking.value = false;
-    }, 1000);
+      currentIndexItem.value++ // เลื่อนไปรูปถัดไป
+      isChecking.value = false
+    }, 1000)
 
     if (
       currentIndexItem.value ===
       categories[currentIndexCate.value].items.length - 1
     ) {
       setTimeout(() => {
-        allPage.playgamePage = false;
-        popUp.showEndgame = true;
-      }, 1000);
+        allPage.playgamePage = false
+        popUp.showEndgame = true
+      }, 1000)
       setTimeout(() => {
-        showWordListPage();
-      }, 3000); // รอ 2 วิ ค่อยขึ้นจบเกม
+        showWordListPage()
+      }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
     }
   } else {
-    popUp.showAnswer = true;
+    popUp.showAnswer = true
   }
-};
+}
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value;
-};
+  selectedAnswer.value = value
+}
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return "bg-green-600";
+      return 'bg-green-600'
     } else {
-      return "";
+      return ''
     }
   }
-  return "bg-button-bgColor";
-};
+  return 'bg-button-bgColor'
+}
 </script>
 
 <template>
@@ -489,7 +489,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="
               () => {
-                if (!isChecking) checkAnswer(option.value);
+                if (!isChecking) checkAnswer(option.value)
               }
             "
             :class="setButtonCorrect(option.value)"
@@ -515,13 +515,13 @@ const setButtonCorrect = (optionValue) => {
           <img
             src="/wrongPopup/bear-frame.png"
             alt="Frame chinese theme"
-            class="w-6/12 mx-auto"
+            class="mx-auto mobile:w-96 lg:w-3/5 xl:w-6/12"
           />
           <div
             class="absolute p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex-col space-y-14"
           >
             <div
-              class="capitalize text-brownColor text-xl font-alkatra font-semibold tracking-wide relative right-7 top-8 sm:right-[50px] sm:text-4xl md:text-5xl lg:text-6xl lg:right-[60px]"
+              class="capitalize text-brownColor text-xl font-alkatra font-semibold tracking-wide relative right-7 top-8 sm:right-[50px] sm:text-4xl md:text-5xl lg:text-6xl lg:right-[60px] mobile:text-2xl"
             >
               The answer is<br />
               <div
@@ -624,7 +624,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== categories[currentIndexCate].items[index].word,
+                    userAns !== categories[currentIndexCate].items[index].word
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
