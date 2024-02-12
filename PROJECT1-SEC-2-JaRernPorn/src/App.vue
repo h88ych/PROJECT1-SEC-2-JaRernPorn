@@ -1,224 +1,232 @@
 <script setup>
-import { reactive, ref, computed } from 'vue'
-import categories from '../data/categories'
+import { reactive, ref, computed } from "vue";
+import categories from "../data/categories";
 
+//word data
 const answer = ref('')
+//check selectedAnswer if is checking or not
 const isChecking = ref(false)
+//user selected answer
 const selectedAnswer = ref('')
+//show options
 const options = ref([])
+//index of current item data
 const currentIndexItem = ref(0)
+//index of current category data
 const currentIndexCate = ref(0)
+//setting button
 const settingButton = ref(false)
+//arr of user answer by click on options
 const userAnswer = ref([])
 
 //init all values to default
 const init = () => {
-  settingButton.value = false
-  currentIndexItem.value = 0
-  currentIndexCate.value = 0
-  userAnswer.value = []
-  selectedAnswer.value = ''
-  options.value = []
-  answer.value = ''
-}
+  settingButton.value = false;
+  currentIndexItem.value = 0;
+  currentIndexCate.value = 0;
+  userAnswer.value = [];
+  selectedAnswer.value = "";
+  options.value = [];
+  answer.value = "";
+};
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  wordListPage: false
-})
+  wordListPage: false,
+});
 
 //pop up page will add to this
 const popUp = reactive({
   showHowToPlayPage: false,
   showAnswer: false,
-  showEndgame: false
-})
+  showEndgame: false,
+});
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false
-  allPage.categoryPage = true
-}
+  allPage.homePage = false;
+  allPage.categoryPage = true;
+};
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true
-  popUp.showHowToPlayPage = true
-}
+  allPage.homePage = true;
+  popUp.showHowToPlayPage = true;
+};
 
 //closeButton click event
 const closeHowToPlay = () => {
-  allPage.homePage = true
-  popUp.showHowToPlayPage = false
-}
+  allPage.homePage = true;
+  popUp.showHowToPlayPage = false;
+};
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true
-  allPage.categoryPage = false
-  allPage.wordListPage = false
-  init()
-}
+  allPage.homePage = true;
+  allPage.categoryPage = false;
+  allPage.wordListPage = false;
+  init();
+};
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index
-  allPage.playgamePage = true
-  allPage.categoryPage = false
-}
+  currentIndexCate.value = index;
+  allPage.playgamePage = true;
+  allPage.categoryPage = false;
+};
 
 const showWordListPage = () => {
-  popUp.showEndgame = false
-  allPage.wordListPage = true
-}
+  popUp.showEndgame = false;
+  allPage.wordListPage = true;
+};
 
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true
-}
+  settingButton.value = true;
+};
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false
-}
+  settingButton.value = false;
+};
 
 const handleNextBtn = () => {
-  popUp.showAnswer = false
-  isChecking.value = false
-  currentIndexItem.value++
+  popUp.showAnswer = false;
+  isChecking.value = false;
+  currentIndexItem.value++;
 
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    allPage.playgamePage = false
-    popUp.showEndgame = true
+    allPage.playgamePage = false;
+    popUp.showEndgame = true;
     setTimeout(() => {
-      showWordListPage()
-    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+      showWordListPage();
+    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
   }
-}
+};
 
 //restartButton click event
 const restartButton = () => {
-  console.log('restart')
-  popUp.showEndgame = false
-  allPage.wordListPage = false
-  allPage.playgamePage = true
-  userAnswer.value = []
-  currentIndexItem.value = 0
-  closeSetting()
-}
+  popUp.showEndgame = false;
+  allPage.wordListPage = false;
+  allPage.playgamePage = true;
+  userAnswer.value = [];
+  currentIndexItem.value = 0;
+  selectedAnswer.value = "";
+  closeSetting();
+};
 
 //mainMenuButton click event
 const mainMenuButton = () => {
-  allPage.wordListPage = false
-  allPage.categoryPage = true
-  init()
-}
+  allPage.wordListPage = false;
+  allPage.categoryPage = true;
+  init();
+};
 
 //homeButton click event
 const homeButton = () => {
-  allPage.playgamePage = false
-  allPage.categoryPage = false
-  allPage.homePage = true
-  init()
-}
+  allPage.playgamePage = false;
+  allPage.categoryPage = false;
+  allPage.homePage = true;
+  init();
+};
 
 const currentCategory = computed(() => {
-  return categories[currentIndexCate.value].name
-})
+  return categories[currentIndexCate.value].name;
+});
 
 // รูปที่แสดงตอนเล่น
 const currentQuiz = computed(() => {
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    return '' // เกมสิ้นสุด
+    return ""; // เกมสิ้นสุด
   }
 
   answer.value =
-    categories[currentIndexCate.value].items[currentIndexItem.value].word
-  options.value = generateOptions(answer.value)
-  return categories[currentIndexCate.value].items[currentIndexItem.value].src
-})
+    categories[currentIndexCate.value].items[currentIndexItem.value].word;
+  options.value = generateOptions(answer.value);
+  return categories[currentIndexCate.value].items[currentIndexItem.value].src;
+});
 
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = []
-  optionsArray.push({ id: 1, value: answer })
+  const optionsArray = [];
+  optionsArray.push({ id: 1, value: answer });
   while (optionsArray.length < 4) {
     const randomWord =
       categories[currentIndexCate.value].items[
         Math.floor(
           Math.random() * categories[currentIndexCate.value].items.length
         )
-      ].word
+      ].word;
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
     }
   }
-  return shuffle(optionsArray)
-}
+  return shuffle(optionsArray);
+};
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[array[i], array[j]] = [array[j], array[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return array
-}
+  return array;
+};
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  isChecking.value = true
-  userAnswer.value.push(selectedOption)
-  console.log(userAnswer.value)
-  console.log(currentIndexItem.value)
+  isChecking.value = true;
+  userAnswer.value.push(selectedOption);
+  console.log(userAnswer.value);
+  console.log(currentIndexItem.value);
 
   if (selectedOption === answer.value) {
-    setSelectedAnswer(selectedOption)
+    setSelectedAnswer(selectedOption);
     setTimeout(() => {
-      currentIndexItem.value++ // เลื่อนไปรูปถัดไป
-      isChecking.value = false
-    }, 1000)
+      currentIndexItem.value++; // เลื่อนไปรูปถัดไป
+      isChecking.value = false;
+    }, 1000);
 
     if (
       currentIndexItem.value ===
       categories[currentIndexCate.value].items.length - 1
     ) {
       setTimeout(() => {
-        allPage.playgamePage = false
-        popUp.showEndgame = true
-      }, 1000)
+        allPage.playgamePage = false;
+        popUp.showEndgame = true;
+      }, 1000);
       setTimeout(() => {
-        showWordListPage()
-      }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
+        showWordListPage();
+      }, 3000); // รอ 2 วิ ค่อยขึ้นจบเกม
     }
   } else {
-    popUp.showAnswer = true
+    popUp.showAnswer = true;
   }
-}
+};
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value
-}
+  selectedAnswer.value = value;
+};
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return 'bg-green-600'
+      return "bg-green-600";
     } else {
-      return ''
+      return "";
     }
   }
-  return 'bg-button-bgColor'
-}
+  return "bg-button-bgColor";
+};
 </script>
 
 <template>
@@ -248,7 +256,7 @@ const setButtonCorrect = (optionValue) => {
           <div id="play-button" class="flex justify-center pt-12">
             <img
               class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out cursor-pointer"
-              src="./assets/home-page/play-button.svg"
+              src="/home-page/play-button.svg"
               alt="play-button"
               @click="playButton"
             />
@@ -257,7 +265,7 @@ const setButtonCorrect = (optionValue) => {
           <div id="HTP-button" class="flex justify-center pt-6">
             <img
               class="w-72 relative hover:w-80 transition-all duration-300 ease-in-out cursor-pointer"
-              src="./assets/home-page/HTP-button.svg"
+              src="/home-page/HTP-button.svg"
               alt="HTP-button"
               @click="howToPlayButton"
             />
@@ -279,7 +287,7 @@ const setButtonCorrect = (optionValue) => {
           <img
             class="w-6 sticky left-3"
             title="close"
-            src="./assets/HowToPlay-page/close-vector.png"
+            src="/HowToPlay-page/close-vector.png"
             alt="close-vector"
           />
         </div>
@@ -293,22 +301,14 @@ const setButtonCorrect = (optionValue) => {
             <div class="content">
               <div class="HTP-1">
                 <p class="text-lg mb-4 font-outfit">1. Select the category.</p>
-                <img
-                  class="mb-9"
-                  src="./assets/HowToPlay-page/HTP-1.png"
-                  alt="HTP-1"
-                />
+                <img class="mb-9" src="/HowToPlay-page/HTP-1.png" alt="HTP-1" />
               </div>
 
               <div class="HTP-2">
                 <p class="text-lg mb-4 font-outfit">
                   2. Choose the word that matches the picture.
                 </p>
-                <img
-                  class="mb-9"
-                  src="./assets/HowToPlay-page/HTP-2.png"
-                  alt="HTP-2"
-                />
+                <img class="mb-9" src="/HowToPlay-page/HTP-2.png" alt="HTP-2" />
               </div>
 
               <div class="HTP-3">
@@ -320,7 +320,7 @@ const setButtonCorrect = (optionValue) => {
                 </p>
                 <img
                   class="mb-9 w-screen rounded-lg"
-                  src="./assets/HowToPlay-page/HTP-3.png"
+                  src="/HowToPlay-page/HTP-3.png"
                   alt="HTP-3"
                 />
               </div>
@@ -330,11 +330,7 @@ const setButtonCorrect = (optionValue) => {
                   4. Game end: List displays your choice and correct answer.
                   Correct is normal, incorrect is red.
                 </p>
-                <img
-                  class="mb-9"
-                  src="./assets/HowToPlay-page/HTP-4.png"
-                  alt="HTP-4"
-                />
+                <img class="mb-9" src="/HowToPlay-page/HTP-4.png" alt="HTP-4" />
               </div>
             </div>
           </div>
@@ -350,7 +346,7 @@ const setButtonCorrect = (optionValue) => {
         <!-- Back to home Button -->
         <img
           class="w-16 absolute hover:w-catePage-20 transition-all duration-300 ease-in-out cursor-pointer"
-          src="./assets/categories/icon/left-arrow.png"
+          src="/categories/icon/left-arrow.png"
           alt="left-arrow"
           @click="backToHome"
         />
@@ -401,14 +397,6 @@ const setButtonCorrect = (optionValue) => {
     v-else-if="allPage.playgamePage"
   >
     <div id="app" class="mx-auto max-w-screen-lg relative">
-      <!-- <div class="absolute">
-        <img
-          src="./assets/play-game/background.png"
-          alt="background"
-          class="h-screen bg-cover bg-center"
-        />
-      </div> -->
-
       <div class="header flex justify-between items-center py-4">
         <div class="play md:ml-4 absolute md:left-10 top-5 text-center">
           <h1 class="text-title text-5xl font-outfit font-bold">
@@ -420,7 +408,7 @@ const setButtonCorrect = (optionValue) => {
           class="setting mr-4 absolute right-10 top-6 hover:scale-125 hover:transition-all duration-300 ease-in-out"
         >
           <img
-            src="./assets/play-game/setting.png"
+            src="/play-game/setting.png"
             alt="setting-image"
             class="w-12 cursor-pointer"
             @click="openSetting"
@@ -442,7 +430,7 @@ const setButtonCorrect = (optionValue) => {
             >
               <div class="flex-col p-5">
                 <img
-                  src="./assets/setting-features/cancel.png"
+                  src="/setting-features/cancel.png"
                   alt="cancel button"
                   class="absolute right-4 top-5 w-5 sm:w-8 cursor-pointer"
                   @click="closeSetting"
@@ -457,19 +445,19 @@ const setButtonCorrect = (optionValue) => {
 
                 <div class="flex flex-col items-center gap-4 mt-4">
                   <img
-                    src="./assets/setting-features/resumeButton.png"
+                    src="/setting-features/resumeButton.png"
                     alt="resume button"
                     class="resume button cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="closeSetting"
                   />
                   <img
-                    src="./assets/setting-features/restartButton.png"
+                    src="/setting-features/restartButton.png"
                     alt="restart button "
                     class="mb-2 cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="restartButton"
                   />
                   <img
-                    src="./assets/setting-features/homebutton.png"
+                    src="/setting-features/homebutton.png"
                     alt="home button"
                     class="cursor-pointer hover:scale-110 hover:transition-all duration-300 ease-in-out"
                     @click="homeButton"
@@ -484,7 +472,7 @@ const setButtonCorrect = (optionValue) => {
       <div id="pic-frame" class="flex justify-center my-12">
         <img
           class="w-96 my-8"
-          src="./assets/play-game/pic-frame.png"
+          src="/play-game/pic-frame.png"
           alt="frame for picture while playing game"
         />
         <img
@@ -501,7 +489,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="
               () => {
-                if (!isChecking) checkAnswer(option.value)
+                if (!isChecking) checkAnswer(option.value);
               }
             "
             :class="setButtonCorrect(option.value)"
@@ -525,7 +513,7 @@ const setButtonCorrect = (optionValue) => {
       >
         <div class="text-center relative translate-middle text-white">
           <img
-            src="./assets/wrongPopup/bear-frame.png"
+            src="/wrongPopup/bear-frame.png"
             alt="Frame chinese theme"
             class="w-6/12 mx-auto"
           />
@@ -562,7 +550,7 @@ const setButtonCorrect = (optionValue) => {
       >
         <div class="text-center relative translate-middle text-white">
           <img
-            src="./assets/endgame-page/complimentFrame.png"
+            src="/endgame-page/complimentFrame.png"
             alt="Picture that said Excellent!"
             class="mx-auto my-50"
           />
@@ -590,20 +578,20 @@ const setButtonCorrect = (optionValue) => {
     <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
-        src="./assets/result-page/frame-top.png"
+        src="/result-page/frame-top.png"
         alt="result-deco-top"
       />
       <div></div>
       <img
         class="size-28 absolute right-5 bottom-3 md:size-36"
-        src="./assets/result-page/frame-bottom.png"
+        src="/result-page/frame-bottom.png"
         alt="result-deco-bottom"
       />
 
       <div dir="rtl">
         <img
           class="size-14 flex hover:scale-110 absolute top-3 right-7 cursor-pointer hover:transition-all duration-300 ease-in-out"
-          src="./assets/result-page/home button.png"
+          src="/result-page/home button.png"
           alt="home"
           @click="backToHome"
         />
@@ -636,7 +624,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== categories[currentIndexCate].items[index].word
+                    userAns !== categories[currentIndexCate].items[index].word,
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
