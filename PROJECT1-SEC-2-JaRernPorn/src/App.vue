@@ -1,210 +1,210 @@
 <script setup>
-import { reactive, ref, computed } from "vue";
-import images from "../data/categories";
+import { reactive, ref, computed } from 'vue'
+import images from '../data/categories'
 
-const answer = ref("");
-const showResult = ref(false);
-const isChecking = ref(false);
-const selectedAnswer = ref("");
-const options = ref([]);
-const currentIndex = ref(0);
-const currentIndexCate = ref(0);
-const settingButton = ref(false);
+const answer = ref('')
+const showResult = ref(false)
+const isChecking = ref(false)
+const selectedAnswer = ref('')
+const options = ref([])
+const currentIndex = ref(0)
+const currentIndexCate = ref(0)
+const settingButton = ref(false)
 //for result page
-const userAnswer = ref([]);
+const userAnswer = ref([])
 
 //init all values to default
 const init = () => {
-  settingButton.value = false;
-  currentIndex.value = 0;
-  currentIndexCate.value = 0;
-  userAnswer.value = [];
-  showResult.value = false;
-  isChecking.value = false;
-  selectedAnswer.value = "";
-  options.value = [];
-  answer.value = "";
-};
+  settingButton.value = false
+  currentIndex.value = 0
+  currentIndexCate.value = 0
+  userAnswer.value = []
+  showResult.value = false
+  isChecking.value = false
+  selectedAnswer.value = ''
+  options.value = []
+  answer.value = ''
+}
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  resultPage: false,
-});
+  resultPage: false
+})
 
 //pop up page will add to this
 const popUp = reactive({
   showHowToPlayPage: false,
   showAnswer: false,
-  showEndgame: false,
-});
+  showEndgame: false
+})
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false;
-  allPage.categoryPage = true;
-};
+  allPage.homePage = false
+  allPage.categoryPage = true
+}
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = true;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = true
+}
 
 //closeButton click event
 const closeHowToPlay = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = false;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = false
+}
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true;
-  allPage.categoryPage = false;
-  allPage.resultPage = false;
-  init();
-};
+  allPage.homePage = true
+  allPage.categoryPage = false
+  allPage.resultPage = false
+  init()
+}
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index;
-  allPage.playgamePage = true;
-  allPage.categoryPage = false;
-};
+  currentIndexCate.value = index
+  allPage.playgamePage = true
+  allPage.categoryPage = false
+}
 
 const showResultPage = () => {
-  popUp.showEndgame = false;
-  allPage.resultPage = true;
-};
+  popUp.showEndgame = false
+  allPage.resultPage = true
+}
 
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true;
-};
+  settingButton.value = true
+}
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false;
-};
+  settingButton.value = false
+}
 
 const handleNextBtn = () => {
-  popUp.showAnswer = false;
-  currentIndex.value++;
-  isChecking.value = false;
-};
+  popUp.showAnswer = false
+  currentIndex.value++
+  isChecking.value = false
+}
 
 const currentCategory = computed(() => {
-  return images[currentIndexCate.value].categoryName;
-});
+  return images[currentIndexCate.value].categoryName
+})
 
 //restartButton click event
 const restartButton = () => {
-  console.log("restart");
-  popUp.showEndgame = false;
-  allPage.resultPage = false;
-  allPage.playgamePage = true;
-  init();
-  closeSetting();
-};
+  console.log('restart')
+  popUp.showEndgame = false
+  allPage.resultPage = false
+  allPage.playgamePage = true
+  init()
+  closeSetting()
+}
 
 //mainMenuButton click event
 const mainMenuButton = () => {
-  allPage.resultPage = false;
-  allPage.categoryPage = true;
-  init();
-};
+  allPage.resultPage = false
+  allPage.categoryPage = true
+  init()
+}
 
 //homeButton click event
 const homeButton = () => {
-  allPage.playgamePage = false;
-  allPage.categoryPage = false;
-  allPage.homePage = true;
-  init();
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+  init()
   // closeSetting();
-};
+}
 
 // รูปที่แสดงตอนเล่น
 const currentImage = computed(() => {
   if (currentIndex.value === images[currentIndexCate.value].groups.length) {
-    return ""; // เกมสิ้นสุด
+    return '' // เกมสิ้นสุด
   }
 
-  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word;
-  options.value = generateOptions(answer.value);
-  return images[currentIndexCate.value].groups[currentIndex.value].src;
-});
+  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word
+  options.value = generateOptions(answer.value)
+  return images[currentIndexCate.value].groups[currentIndex.value].src
+})
 
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = [];
-  optionsArray.push({ id: 1, value: answer });
+  const optionsArray = []
+  optionsArray.push({ id: 1, value: answer })
   while (optionsArray.length < 4) {
     const randomWord =
       images[currentIndexCate.value].groups[
         Math.floor(Math.random() * images[currentIndexCate.value].groups.length)
-      ].word;
+      ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
     }
   }
-  return shuffle(optionsArray);
-};
+  return shuffle(optionsArray)
+}
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
   }
-  return array;
-};
+  return array
+}
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  isChecking.value = true;
-  showResult.value = true;
-  userAnswer.value.push(selectedOption);
-  console.log(userAnswer.value);
+  isChecking.value = true
+  showResult.value = true
+  userAnswer.value.push(selectedOption)
+  console.log(userAnswer.value)
 
   if (selectedOption === answer.value) {
     // resultMessage.value = 'Correct!'
-    setSelectedAnswer(selectedOption);
+    setSelectedAnswer(selectedOption)
     setTimeout(() => {
-      currentIndex.value++; // เลื่อนไปรูปถัดไป
-      showResult.value = false;
-      isChecking.value = false;
-    }, 1000);
+      currentIndex.value++ // เลื่อนไปรูปถัดไป
+      showResult.value = false
+      isChecking.value = false
+    }, 1000)
   } else {
-    popUp.showAnswer = true;
+    popUp.showAnswer = true
   }
 
   if (currentIndex.value === images[currentIndexCate.value].groups.length - 1) {
-    allPage.playgamePage = false;
-    popUp.showEndgame = true;
+    allPage.playgamePage = false
+    popUp.showEndgame = true
     setTimeout(() => {
-      showResultPage();
-    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
+      showResultPage()
+    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
-};
+}
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value;
-};
+  selectedAnswer.value = value
+}
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (showResult.value && optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return "bg-green-600";
+      return 'bg-green-600'
     } else {
-      return "";
+      return ''
     }
   }
-  return "bg-button-bgColor";
-};
+  return 'bg-button-bgColor'
+}
 </script>
 
 <template>
@@ -331,7 +331,7 @@ const setButtonCorrect = (optionValue) => {
 
   <!-- Category Page -->
   <section class="category" v-else-if="allPage.categoryPage">
-    <div class="p-7 bg-main-bgColor min-h-screen ">
+    <div class="p-7 bg-main-bgColor min-h-screen">
       <header>
         <!-- Back to home Button -->
         <img
@@ -487,7 +487,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="
               () => {
-                if (!isChecking) checkAnswer(option.value);
+                if (!isChecking) checkAnswer(option.value)
               }
             "
             :class="setButtonCorrect(option.value)"
@@ -622,7 +622,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== images[currentIndexCate].groups[index].word,
+                    userAns !== images[currentIndexCate].groups[index].word
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
@@ -633,7 +633,7 @@ const setButtonCorrect = (optionValue) => {
 
           <section class="flex flex-col">
             <div
-              class="bg-white shadow-lg font-outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-visible"
+              class="bg-white shadow-lg font-outfit text-lg font-medium p-5 rounded-3xl w-72 h-60 overflow-auto md:text-xl md:w-96 md:h-96 md:overflow-x-auto"
             >
               Answer:
               <div class="border-b-2 border-black"></div>
