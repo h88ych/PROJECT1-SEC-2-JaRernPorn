@@ -1,13 +1,13 @@
 <script setup>
 import { reactive, ref, computed } from 'vue'
-import images from '../data/categories'
+import categories from '../data/categories'
 
 const answer = ref('')
 const showResult = ref(false)
 const isChecking = ref(false)
 const selectedAnswer = ref('')
 const options = ref([])
-const currentIndex = ref(0)
+const currentIndexItem = ref(0)
 const currentIndexCate = ref(0)
 const settingButton = ref(false)
 //for result page
@@ -16,7 +16,7 @@ const userAnswer = ref([])
 //init all values to default
 const init = () => {
   settingButton.value = false
-  currentIndex.value = 0
+  currentIndexItem.value = 0
   currentIndexCate.value = 0
   userAnswer.value = []
   showResult.value = false
@@ -91,9 +91,9 @@ const closeSetting = () => {
 const handleNextBtn = () => {
   popUp.showAnswer = false
   isChecking.value = false
-  currentIndex.value++
+  currentIndexItem.value++
 
-  if (currentIndex.value === images[currentIndexCate.value].groups.length) {
+  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
     allPage.playgamePage = false
     popUp.showEndgame = true
     setTimeout(() => {
@@ -103,7 +103,7 @@ const handleNextBtn = () => {
 }
 
 const currentCategory = computed(() => {
-  return images[currentIndexCate.value].categoryName
+  return categories[currentIndexCate.value].name
 })
 
 //restartButton click event
@@ -133,14 +133,14 @@ const homeButton = () => {
 }
 
 // รูปที่แสดงตอนเล่น
-const currentImage = computed(() => {
-  if (currentIndex.value === images[currentIndexCate.value].groups.length) {
+const currentQuiz = computed(() => {
+  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
     return '' // เกมสิ้นสุด
   }
 
-  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word
+  answer.value = categories[currentIndexCate.value].items[currentIndexItem.value].word
   options.value = generateOptions(answer.value)
-  return images[currentIndexCate.value].groups[currentIndex.value].src
+  return categories[currentIndexCate.value].items[currentIndexItem.value].src
 })
 
 // สร้างตัวเลือก
@@ -149,8 +149,8 @@ const generateOptions = (answer) => {
   optionsArray.push({ id: 1, value: answer })
   while (optionsArray.length < 4) {
     const randomWord =
-      images[currentIndexCate.value].groups[
-        Math.floor(Math.random() * images[currentIndexCate.value].groups.length)
+      categories[currentIndexCate.value].items[
+        Math.floor(Math.random() * categories[currentIndexCate.value].items.length)
       ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
@@ -175,19 +175,19 @@ const checkAnswer = (selectedOption) => {
   showResult.value = true
   userAnswer.value.push(selectedOption)
   console.log(userAnswer.value)
-  console.log(currentIndex.value)
+  console.log(currentIndexItem.value)
 
   if (selectedOption === answer.value) {
     setSelectedAnswer(selectedOption)
     setTimeout(() => {
-      currentIndex.value++ // เลื่อนไปรูปถัดไป
+      currentIndexItem.value++ // เลื่อนไปรูปถัดไป
       showResult.value = false
       isChecking.value = false
     }, 1000)
 
     if (
-      currentIndex.value ===
-      images[currentIndexCate.value].groups.length - 1
+      currentIndexItem.value ===
+      categories[currentIndexCate.value].items.length - 1
     ) {
       setTimeout(() => {
         allPage.playgamePage = false
@@ -371,22 +371,22 @@ const setButtonCorrect = (optionValue) => {
             class="md:flex md:space-x-32 md:flex-wrap md:w-3/4 md:justify-center"
           >
             <div
-              v-for="(category, categoryIndex) in images"
-              :key="category.categoryName"
+              v-for="(category, cateIndex) in categories"
+              :key="category.name"
               class="category-item flex flex-col items-center md:mb-9 cursor-pointer"
-              @click="showPlaygame(categoryIndex)"
+              @click="showPlaygame(cateIndex)"
             >
               <div
                 class="pic w-52 pb-2 hover:w-56 transition-all duration-300 ease-in-out"
               >
                 <img
-                  :src="category.cateImg"
-                  :alt="category.categoryName"
+                  :src="category.image"
+                  :alt="category.name"
                   class="hover:drop-shadow-lg"
                 />
               </div>
 
-              <p class="text-xl">{{ category.categoryName }}</p>
+              <p class="text-xl">{{ category.name }}</p>
             </div>
           </div>
         </div>
@@ -488,7 +488,7 @@ const setButtonCorrect = (optionValue) => {
         />
         <img
           class="absolute font-outfit mb-4 mx-8 my-20 size-48"
-          :src="currentImage"
+          :src="currentQuiz"
           :alt="answer"
         />
       </div>
@@ -635,7 +635,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== images[currentIndexCate].groups[index].word
+                    userAns !== categories[currentIndexCate].items[index].word
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
@@ -652,7 +652,7 @@ const setButtonCorrect = (optionValue) => {
               <div class="border-b-2 border-black"></div>
               <div
                 class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
-                v-for="answer in images[currentIndexCate].groups"
+                v-for="answer in categories[currentIndexCate].items"
               >
                 {{ answer.word }} - {{ answer.meaning }}
               </div>
