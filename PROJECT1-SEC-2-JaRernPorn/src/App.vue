@@ -3,38 +3,31 @@ import { reactive, ref, computed } from 'vue'
 import categories from '../data/categories'
 
 const answer = ref('')
-const showResult = ref(false)
 const isChecking = ref(false)
 const selectedAnswer = ref('')
 const options = ref([])
 const currentIndexItem = ref(0)
 const currentIndexCate = ref(0)
 const settingButton = ref(false)
-
-//for result page
-const userAnswer = ref([]);
+const userAnswer = ref([])
 
 //init all values to default
 const init = () => {
-
-  settingButton.value = false;
-  currentIndex.value = 0;
-  currentIndexCate.value = 0;
-  userAnswer.value = [];
-  showResult.value = false;
-  isChecking.value = false;
-  selectedAnswer.value = "";
-  options.value = [];
-  answer.value = "";
-};
-
+  settingButton.value = false
+  currentIndexItem.value = 0
+  currentIndexCate.value = 0
+  userAnswer.value = []
+  selectedAnswer.value = ''
+  options.value = []
+  answer.value = ''
+}
 
 //all page will add to this
 const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  resultPage: false,
+  wordListPage: false
 });
 
 //pop up page will add to this
@@ -64,11 +57,12 @@ const closeHowToPlay = () => {
 
 //backToHomeButton click event
 const backToHome = () => {
-  allPage.homePage = true;
-  allPage.categoryPage = false;
-  allPage.resultPage = false;
-  init();
-};
+  allPage.homePage = true
+  allPage.categoryPage = false
+  allPage.wordListPage = false
+  init()
+}
+
 
 const showPlaygame = (index) => {
   currentIndexCate.value = index;
@@ -76,10 +70,11 @@ const showPlaygame = (index) => {
   allPage.categoryPage = false;
 };
 
-const showResultPage = () => {
-  popUp.showEndgame = false;
-  allPage.resultPage = true;
-};
+const showWordListPage = () => {
+  popUp.showEndgame = false
+  allPage.wordListPage = true
+}
+
 
 //settingButton click event
 const openSetting = () => {
@@ -103,20 +98,43 @@ const handleNextBtn = () => {
   isChecking.value = false
   currentIndexItem.value++
 
-  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
+  if (
+    currentIndexItem.value === categories[currentIndexCate.value].items.length
+  ) {
     allPage.playgamePage = false
 
     setTimeout(() => {
-      showResultPage();
-    }, 2000); // รอ 2 วิ ค่อยขึ้นจบเกม
+      showWordListPage()
+    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
 
 };
 
-const currentCategory = computed(() => {
-  return images[currentIndexCate.value].categoryName;
-});
 
+//restartButton click event
+const restartButton = () => {
+  console.log('restart')
+  popUp.showEndgame = false
+  allPage.wordListPage = false
+  allPage.playgamePage = true
+  userAnswer.value = []
+  currentIndexItem.value = 0
+  closeSetting()
+}
+
+//mainMenuButton click event
+const mainMenuButton = () => {
+  allPage.wordListPage = false
+  allPage.categoryPage = true
+  init()
+}
+
+//homeButton click event
+const homeButton = () => {
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+  init()
 }
 
 const currentCategory = computed(() => {
@@ -124,49 +142,15 @@ const currentCategory = computed(() => {
 })
 
 
-//restartButton click event
-const restartButton = () => {
-  console.log("restart");
-  popUp.showEndgame = false;
-  allPage.resultPage = false;
-  allPage.playgamePage = true;
-  init();
-  closeSetting();
-};
-
-//mainMenuButton click event
-const mainMenuButton = () => {
-  allPage.resultPage = false;
-  allPage.categoryPage = true;
-  init();
-};
-
-//homeButton click event
-const homeButton = () => {
-  allPage.playgamePage = false;
-  allPage.categoryPage = false;
-  allPage.homePage = true;
-  init();
-  // closeSetting();
-};
-
-// รูปที่แสดงตอนเล่น
-const currentImage = computed(() => {
-  if (currentIndex.value === images[currentIndexCate.value].groups.length) {
-    return ""; // เกมสิ้นสุด
-  }
-
-  answer.value = images[currentIndexCate.value].groups[currentIndex.value].word;
-  options.value = generateOptions(answer.value);
-  return images[currentIndexCate.value].groups[currentIndex.value].src;
-});
-
 const currentQuiz = computed(() => {
-  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
+  if (
+    currentIndexItem.value === categories[currentIndexCate.value].items.length
+  ) {
     return '' // เกมสิ้นสุด
   }
 
-  answer.value = categories[currentIndexCate.value].items[currentIndexItem.value].word
+  answer.value =
+    categories[currentIndexCate.value].items[currentIndexItem.value].word
   options.value = generateOptions(answer.value)
   return categories[currentIndexCate.value].items[currentIndexItem.value].src
 })
@@ -183,7 +167,9 @@ const generateOptions = (answer) => {
       ].word;
 
       categories[currentIndexCate.value].items[
-        Math.floor(Math.random() * categories[currentIndexCate.value].items.length)
+        Math.floor(
+          Math.random() * categories[currentIndexCate.value].items.length
+        )
       ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
@@ -211,7 +197,6 @@ const checkAnswer = (selectedOption) => {
   console.log(currentIndex.value);
 
   isChecking.value = true
-  showResult.value = true
   userAnswer.value.push(selectedOption)
   console.log(userAnswer.value)
   console.log(currentIndexItem.value)
@@ -219,10 +204,9 @@ const checkAnswer = (selectedOption) => {
   if (selectedOption === answer.value) {
     setSelectedAnswer(selectedOption);
     setTimeout(() => {
-      currentIndex.value++; // เลื่อนไปรูปถัดไป
-      showResult.value = false;
-      isChecking.value = false;
-    }, 1000);
+      currentIndexItem.value++ // เลื่อนไปรูปถัดไป
+      isChecking.value = false
+    }, 1000)
 
     if (
       currentIndexItem.value ===
@@ -231,9 +215,9 @@ const checkAnswer = (selectedOption) => {
       setTimeout(() => {
         allPage.playgamePage = false
         popUp.showEndgame = true
-      }, 999)
+      }, 1000)
       setTimeout(() => {
-        showResultPage()
+        showWordListPage()
       }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
     }
   } else {
@@ -250,7 +234,7 @@ const setSelectedAnswer = (value) => {
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
-  if (showResult.value && optionValue === selectedAnswer.value) {
+  if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
       return "bg-green-600";
     } else {
@@ -626,7 +610,7 @@ const setButtonCorrect = (optionValue) => {
   </section>
 
   <!-- Word List Page -->
-  <section class="resultPage" v-if="allPage.resultPage">
+  <section class="wordListPage" v-if="allPage.wordListPage">
     <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
@@ -680,7 +664,7 @@ const setButtonCorrect = (optionValue) => {
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
-                {{ userAns }}
+                {{ index + 1 }}. {{ userAns }}
               </div>
             </div>
           </section>
@@ -693,9 +677,10 @@ const setButtonCorrect = (optionValue) => {
               <div class="border-b-2 border-black"></div>
               <div
                 class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
-                v-for="answer in categories[currentIndexCate].items"
+                v-for="(answer, index) in categories[currentIndexCate].items"
+                :key="index"
               >
-                {{ answer.word }} - {{ answer.meaning }}
+                {{ index + 1 }}. {{ answer.word }} - {{ answer.meaning }}
               </div>
             </div>
           </section>
