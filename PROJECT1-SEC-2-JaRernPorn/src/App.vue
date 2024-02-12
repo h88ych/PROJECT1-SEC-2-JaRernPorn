@@ -2,8 +2,9 @@
 import { reactive, ref, computed } from 'vue'
 import categories from '../data/categories'
 
-//
+//word data
 const answer = ref('')
+//
 const isChecking = ref(false)
 const selectedAnswer = ref('')
 const options = ref([])
@@ -29,32 +30,32 @@ const allPage = reactive({
   categoryPage: false,
   playgamePage: false,
   wordListPage: false
-});
+})
 
 //pop up page will add to this
 const popUp = reactive({
   showHowToPlayPage: false,
   showAnswer: false,
-  showEndgame: false,
-});
+  showEndgame: false
+})
 
 //playbutton click event
 const playButton = () => {
-  allPage.homePage = false;
-  allPage.categoryPage = true;
-};
+  allPage.homePage = false
+  allPage.categoryPage = true
+}
 
 //howToPlayButton click event
 const howToPlayButton = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = true;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = true
+}
 
 //closeButton click event
 const closeHowToPlay = () => {
-  allPage.homePage = true;
-  popUp.showHowToPlayPage = false;
-};
+  allPage.homePage = true
+  popUp.showHowToPlayPage = false
+}
 
 //backToHomeButton click event
 const backToHome = () => {
@@ -64,57 +65,53 @@ const backToHome = () => {
   init()
 }
 
-
 const showPlaygame = (index) => {
-  currentIndexCate.value = index;
-  allPage.playgamePage = true;
-  allPage.categoryPage = false;
-};
+  currentIndexCate.value = index
+  allPage.playgamePage = true
+  allPage.categoryPage = false
+}
 
 const showWordListPage = () => {
   popUp.showEndgame = false
   allPage.wordListPage = true
 }
 
-
 //settingButton click event
 const openSetting = () => {
-  settingButton.value = true;
-};
+  settingButton.value = true
+}
 
 //closeSettingButton click event
 const closeSetting = () => {
-  settingButton.value = false;
-};
+  settingButton.value = false
+}
 
 const handleNextBtn = () => {
-  popUp.showAnswer = false;
-  isChecking.value = false;
-  currentIndex.value++;
-
-  if (currentIndex.value === images[currentIndexCate.value].groups.length) {
-    allPage.playgamePage = false;
-    popUp.showEndgame = true;
   popUp.showAnswer = false
   isChecking.value = false
   currentIndexItem.value++
 
-  if (
-    currentIndexItem.value === categories[currentIndexCate.value].items.length
-  ) {
+  if (currentIndexItem.value === images[currentIndexCate.value].groups.length) {
     allPage.playgamePage = false
+    popUp.showEndgame = true
+    popUp.showAnswer = false
+    isChecking.value = false
+    currentIndexItem.value++
 
-    setTimeout(() => {
-      showWordListPage()
-    }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+    if (
+      currentIndexItem.value === categories[currentIndexCate.value].items.length
+    ) {
+      allPage.playgamePage = false
+
+      setTimeout(() => {
+        showWordListPage()
+      }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
+    }
   }
-
-};
-
+}
 
 //restartButton click event
 const restartButton = () => {
-  console.log('restart')
   popUp.showEndgame = false
   allPage.wordListPage = false
   allPage.playgamePage = true
@@ -142,7 +139,6 @@ const currentCategory = computed(() => {
   return categories[currentIndexCate.value].name
 })
 
-
 const currentQuiz = computed(() => {
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
@@ -156,46 +152,44 @@ const currentQuiz = computed(() => {
   return categories[currentIndexCate.value].items[currentIndexItem.value].src
 })
 
-
 // สร้างตัวเลือก
 const generateOptions = (answer) => {
-  const optionsArray = [];
-  optionsArray.push({ id: 1, value: answer });
+  const optionsArray = []
+  optionsArray.push({ id: 1, value: answer })
   while (optionsArray.length < 4) {
     const randomWord =
       images[currentIndexCate.value].groups[
         Math.floor(Math.random() * images[currentIndexCate.value].groups.length)
-      ].word;
-
-      categories[currentIndexCate.value].items[
-        Math.floor(
-          Math.random() * categories[currentIndexCate.value].items.length
-        )
       ].word
 
+    categories[currentIndexCate.value].items[
+      Math.floor(
+        Math.random() * categories[currentIndexCate.value].items.length
+      )
+    ].word
+
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
     }
   }
-  return shuffle(optionsArray);
-};
+  return shuffle(optionsArray)
+}
 
 // สลับลำดับ
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
   }
-  return array;
-};
+  return array
+}
 
 // logic check answer
 const checkAnswer = (selectedOption) => {
-  isChecking.value = true;
-  showResult.value = true;
-  userAnswer.value.push(selectedOption);
-  console.log(userAnswer.value);
-  console.log(currentIndex.value);
+  isChecking.value = true
+  showResult.value = true
+  userAnswer.value.push(selectedOption)
+  console.log(userAnswer.value)
 
   isChecking.value = true
   userAnswer.value.push(selectedOption)
@@ -203,7 +197,7 @@ const checkAnswer = (selectedOption) => {
   console.log(currentIndexItem.value)
 
   if (selectedOption === answer.value) {
-    setSelectedAnswer(selectedOption);
+    setSelectedAnswer(selectedOption)
     setTimeout(() => {
       currentIndexItem.value++ // เลื่อนไปรูปถัดไป
       isChecking.value = false
@@ -222,28 +216,26 @@ const checkAnswer = (selectedOption) => {
       }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
     }
   } else {
-    popUp.showAnswer = true;
+    popUp.showAnswer = true
   }
-
-};
-
+}
 
 // track selected answer from user by ref
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value;
-};
+  selectedAnswer.value = value
+}
 
 // Change color's button if selected answer is correct!
 const setButtonCorrect = (optionValue) => {
   if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return "bg-green-600";
+      return 'bg-green-600'
     } else {
-      return "";
+      return ''
     }
   }
-  return "bg-button-bgColor";
-};
+  return 'bg-button-bgColor'
+}
 </script>
 
 <template>
@@ -526,7 +518,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="
               () => {
-                if (!isChecking) checkAnswer(option.value);
+                if (!isChecking) checkAnswer(option.value)
               }
             "
             :class="setButtonCorrect(option.value)"
@@ -661,7 +653,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== categories[currentIndexCate].items[index].word,
+                    userAns !== categories[currentIndexCate].items[index].word
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
