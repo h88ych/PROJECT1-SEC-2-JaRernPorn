@@ -19,8 +19,6 @@ const init = () => {
   currentIndexItem.value = 0
   currentIndexCate.value = 0
   userAnswer.value = []
-  showResult.value = false
-  isChecking.value = false
   selectedAnswer.value = ''
   options.value = []
   answer.value = ''
@@ -31,7 +29,7 @@ const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  resultPage: false
+  wordListPage: false
 })
 
 //pop up page will add to this
@@ -63,7 +61,7 @@ const closeHowToPlay = () => {
 const backToHome = () => {
   allPage.homePage = true
   allPage.categoryPage = false
-  allPage.resultPage = false
+  allPage.wordListPage = false
   init()
 }
 
@@ -73,9 +71,9 @@ const showPlaygame = (index) => {
   allPage.categoryPage = false
 }
 
-const showResultPage = () => {
+const showWordListPage = () => {
   popUp.showEndgame = false
-  allPage.resultPage = true
+  allPage.wordListPage = true
 }
 
 //settingButton click event
@@ -93,11 +91,13 @@ const handleNextBtn = () => {
   isChecking.value = false
   currentIndexItem.value++
 
-  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
+  if (
+    currentIndexItem.value === categories[currentIndexCate.value].items.length
+  ) {
     allPage.playgamePage = false
     popUp.showEndgame = true
     setTimeout(() => {
-      showResultPage()
+      showWordListPage()
     }, 2000) // รอ 2 วิ ค่อยขึ้นจบเกม
   }
 }
@@ -110,15 +110,16 @@ const currentCategory = computed(() => {
 const restartButton = () => {
   console.log('restart')
   popUp.showEndgame = false
-  allPage.resultPage = false
+  allPage.wordListPage = false
   allPage.playgamePage = true
-  init()
+  userAnswer.value = []
+  currentIndexItem.value = 0
   closeSetting()
 }
 
 //mainMenuButton click event
 const mainMenuButton = () => {
-  allPage.resultPage = false
+  allPage.wordListPage = false
   allPage.categoryPage = true
   init()
 }
@@ -129,16 +130,18 @@ const homeButton = () => {
   allPage.categoryPage = false
   allPage.homePage = true
   init()
-  // closeSetting();
 }
 
 // รูปที่แสดงตอนเล่น
 const currentQuiz = computed(() => {
-  if (currentIndexItem.value === categories[currentIndexCate.value].items.length) {
+  if (
+    currentIndexItem.value === categories[currentIndexCate.value].items.length
+  ) {
     return '' // เกมสิ้นสุด
   }
 
-  answer.value = categories[currentIndexCate.value].items[currentIndexItem.value].word
+  answer.value =
+    categories[currentIndexCate.value].items[currentIndexItem.value].word
   options.value = generateOptions(answer.value)
   return categories[currentIndexCate.value].items[currentIndexItem.value].src
 })
@@ -150,7 +153,9 @@ const generateOptions = (answer) => {
   while (optionsArray.length < 4) {
     const randomWord =
       categories[currentIndexCate.value].items[
-        Math.floor(Math.random() * categories[currentIndexCate.value].items.length)
+        Math.floor(
+          Math.random() * categories[currentIndexCate.value].items.length
+        )
       ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
@@ -194,7 +199,7 @@ const checkAnswer = (selectedOption) => {
         popUp.showEndgame = true
       }, 999)
       setTimeout(() => {
-        showResultPage()
+        showWordListPage()
       }, 3000) // รอ 2 วิ ค่อยขึ้นจบเกม
     }
   } else {
@@ -585,7 +590,7 @@ const setButtonCorrect = (optionValue) => {
   </section>
 
   <!-- Word List Page -->
-  <section class="resultPage" v-if="allPage.resultPage">
+  <section class="wordListPage" v-if="allPage.wordListPage">
     <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
       <img
         class="size-28 absolute left-5 md:size-36"
@@ -639,7 +644,7 @@ const setButtonCorrect = (optionValue) => {
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
-                {{ userAns }}
+                {{ index + 1 }}. {{ userAns }}
               </div>
             </div>
           </section>
@@ -652,9 +657,10 @@ const setButtonCorrect = (optionValue) => {
               <div class="border-b-2 border-black"></div>
               <div
                 class="font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
-                v-for="answer in categories[currentIndexCate].items"
+                v-for="(answer, index) in categories[currentIndexCate].items"
+                :key="index"
               >
-                {{ answer.word }} - {{ answer.meaning }}
+                {{ index + 1 }}. {{ answer.word }} - {{ answer.meaning }}
               </div>
             </div>
           </section>
