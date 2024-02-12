@@ -1,8 +1,8 @@
-const images = [
+const categories = [
   {
-    categoryName: 'Fruits',
-    cateImg: 'src/assets/categories/cate_fruits.png',
-    groups: [
+    name: 'Fruits',
+    image: 'src/assets/categories/cate_fruits.png',
+    items: [
       {
         id: 1,
         src: 'src/assets/play-game/fruits/apple-01.png',
@@ -49,9 +49,9 @@ const images = [
   },
 
   {
-    categoryName: 'Animals',
-    cateImg: 'src/assets/categories/cate_animals.png',
-    groups: [
+    name: 'Animals',
+    image: 'src/assets/categories/cate_animals.png',
+    items: [
       {
         id: 1,
         src: 'src/assets/play-game/animal/cat-01.png',
@@ -98,9 +98,9 @@ const images = [
   },
 
   {
-    categoryName: 'Colors',
-    cateImg: 'src/assets/categories/cate_colors.png',
-    groups: [
+    name: 'Colors',
+    image: 'src/assets/categories/cate_colors.png',
+    items: [
       {
         id: 1,
         src: 'src/assets/play-game/color/black-01.png',
@@ -147,9 +147,9 @@ const images = [
   },
 
   {
-    categoryName: 'Family',
-    cateImg: 'src/assets/categories/cate_family.png',
-    groups: [
+    name: 'Family',
+    image: 'src/assets/categories/cate_family.png',
+    items: [
       {
         id: 1,
         src: 'src/assets/play-game/family/grandfather.png',
@@ -196,9 +196,9 @@ const images = [
   },
 
   {
-    categoryName: 'Numbers',
-    cateImg: 'src/assets/categories/cate_numbers.png',
-    groups: [
+    name: 'Numbers',
+    image: 'src/assets/categories/cate_numbers.png',
+    items: [
       {
         id: 1,
         src: 'src/assets/play-game/number/seven-01.png',
@@ -245,4 +245,4 @@ const images = [
   }
 ]
 
-export default images
+export default categories
