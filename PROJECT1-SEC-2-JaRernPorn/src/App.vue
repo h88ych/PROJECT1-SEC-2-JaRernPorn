@@ -100,10 +100,6 @@ const handleNextBtn = () => {
   }
 }
 
-const currentCategory = computed(() => {
-  return categories[currentIndexCate.value].name
-})
-
 //restartButton click event
 const restartButton = () => {
   console.log('restart')
@@ -129,6 +125,10 @@ const homeButton = () => {
   allPage.homePage = true
   init()
 }
+
+const currentCategory = computed(() => {
+  return categories[currentIndexCate.value].name
+})
 
 // รูปที่แสดงตอนเล่น
 const currentQuiz = computed(() => {
