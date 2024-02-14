@@ -1,207 +1,207 @@
 <script setup>
-import { reactive, ref, computed } from "vue";
-import categories from "../data/categories";
+import { reactive, ref, computed } from 'vue'
+import categories from '../data/categories'
 
-const answer = ref("");
-const isChecking = ref(false);
-const selectedAnswer = ref("");
-const options = ref([]);
-const currentIndexItem = ref(0);
-const currentIndexCate = ref(0);
-const settingButton = ref(false);
-const userAnswer = ref([]);
+const answer = ref('')
+const isChecking = ref(false)
+const selectedAnswer = ref('')
+const options = ref([])
+const currentIndexItem = ref(0)
+const currentIndexCate = ref(0)
+const settingButton = ref(false)
+const userAnswer = ref([])
 
 const init = () => {
-  settingButton.value = false;
-  currentIndexItem.value = 0;
-  currentIndexCate.value = 0;
-  userAnswer.value = [];
-  selectedAnswer.value = "";
-  options.value = [];
-  answer.value = "";
-};
+  settingButton.value = false
+  currentIndexItem.value = 0
+  currentIndexCate.value = 0
+  userAnswer.value = []
+  selectedAnswer.value = ''
+  options.value = []
+  answer.value = ''
+}
 
 const allPage = reactive({
   homePage: true,
   categoryPage: false,
   playgamePage: false,
-  wordListPage: false,
-});
+  wordListPage: false
+})
 
 const popup = reactive({
   showHowToPlayPage: false,
   showAnswer: false,
-  showEndgame: false,
-});
+  showEndgame: false
+})
 
 const playButton = () => {
-  allPage.homePage = false;
-  allPage.categoryPage = true;
-};
+  allPage.homePage = false
+  allPage.categoryPage = true
+}
 
 const howToPlayButton = () => {
-  allPage.homePage = true;
-  popup.showHowToPlayPage = true;
-};
+  allPage.homePage = true
+  popup.showHowToPlayPage = true
+}
 
 const closeHowToPlay = () => {
-  allPage.homePage = true;
-  popup.showHowToPlayPage = false;
-};
+  allPage.homePage = true
+  popup.showHowToPlayPage = false
+}
 
 const backToHome = () => {
-  allPage.homePage = true;
-  allPage.categoryPage = false;
-  allPage.wordListPage = false;
-  init();
-};
+  allPage.homePage = true
+  allPage.categoryPage = false
+  allPage.wordListPage = false
+  init()
+}
 
 const showPlaygame = (index) => {
-  currentIndexCate.value = index;
-  allPage.playgamePage = true;
-  allPage.categoryPage = false;
-};
+  currentIndexCate.value = index
+  allPage.playgamePage = true
+  allPage.categoryPage = false
+}
 
 const showWordListPage = () => {
-  popup.showEndgame = false;
-  allPage.wordListPage = true;
-};
+  popup.showEndgame = false
+  allPage.wordListPage = true
+}
 
 const openSetting = () => {
-  settingButton.value = true;
-};
+  settingButton.value = true
+}
 
 const closeSetting = () => {
-  settingButton.value = false;
-};
+  settingButton.value = false
+}
 
 const restartButton = () => {
-  popup.showEndgame = false;
-  allPage.wordListPage = false;
-  allPage.playgamePage = true;
-  userAnswer.value = [];
-  currentIndexItem.value = 0;
-  selectedAnswer.value = "";
-  closeSetting();
-};
+  popup.showEndgame = false
+  allPage.wordListPage = false
+  allPage.playgamePage = true
+  userAnswer.value = []
+  currentIndexItem.value = 0
+  selectedAnswer.value = ''
+  closeSetting()
+}
 
 const handleNextBtn = () => {
-  popup.showAnswer = false;
-  isChecking.value = false;
-  currentIndexItem.value++;
+  popup.showAnswer = false
+  isChecking.value = false
+  currentIndexItem.value++
 
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    allPage.playgamePage = false;
-    popup.showEndgame = true;
+    allPage.playgamePage = false
+    popup.showEndgame = true
     setTimeout(() => {
-      showWordListPage();
-    }, 2000);
+      showWordListPage()
+    }, 2000)
   }
-};
+}
 
 const mainMenuButton = () => {
-  allPage.wordListPage = false;
-  allPage.categoryPage = true;
-  init();
-};
+  allPage.wordListPage = false
+  allPage.categoryPage = true
+  init()
+}
 
 const homeButton = () => {
-  allPage.playgamePage = false;
-  allPage.categoryPage = false;
-  allPage.homePage = true;
-  init();
-};
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+  init()
+}
 
 //for play game page
 const currentCategory = computed(() => {
-  return categories[currentIndexCate.value].name;
-});
+  return categories[currentIndexCate.value].name
+})
 
 const currentQuiz = computed(() => {
   if (
     currentIndexItem.value === categories[currentIndexCate.value].items.length
   ) {
-    return "";
+    return ''
   }
 
   answer.value =
-    categories[currentIndexCate.value].items[currentIndexItem.value].word;
-  options.value = generateOptions(answer.value);
-  return categories[currentIndexCate.value].items[currentIndexItem.value].src;
-});
+    categories[currentIndexCate.value].items[currentIndexItem.value].word
+  options.value = generateOptions(answer.value)
+  return categories[currentIndexCate.value].items[currentIndexItem.value].src
+})
 
 const generateOptions = (answer) => {
-  const optionsArray = [];
-  optionsArray.push({ id: 1, value: answer });
+  const optionsArray = []
+  optionsArray.push({ id: 1, value: answer })
   while (optionsArray.length < 4) {
     const randomWord =
       categories[currentIndexCate.value].items[
         Math.floor(
           Math.random() * categories[currentIndexCate.value].items.length
         )
-      ].word;
+      ].word
 
     if (!optionsArray.some((option) => option.value === randomWord)) {
-      optionsArray.push({ id: optionsArray.length + 1, value: randomWord });
+      optionsArray.push({ id: optionsArray.length + 1, value: randomWord })
     }
   }
-  return shuffle(optionsArray);
-};
+  return shuffle(optionsArray)
+}
 
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
   }
-  return array;
-};
+  return array
+}
 
 const checkAnswer = (selectedOption) => {
-  isChecking.value = true;
-  userAnswer.value.push(selectedOption);
-  console.log(userAnswer.value);
-  console.log(currentIndexItem.value);
+  isChecking.value = true
+  userAnswer.value.push(selectedOption)
+  console.log(userAnswer.value)
+  console.log(currentIndexItem.value)
 
   if (selectedOption === answer.value) {
-    setSelectedAnswer(selectedOption);
+    setSelectedAnswer(selectedOption)
     setTimeout(() => {
-      currentIndexItem.value++;
-      isChecking.value = false;
-    }, 1000);
+      currentIndexItem.value++
+      isChecking.value = false
+    }, 1000)
 
     if (
       currentIndexItem.value ===
       categories[currentIndexCate.value].items.length - 1
     ) {
       setTimeout(() => {
-        allPage.playgamePage = false;
-        popup.showEndgame = true;
-      }, 1000);
+        allPage.playgamePage = false
+        popup.showEndgame = true
+      }, 1000)
       setTimeout(() => {
-        showWordListPage();
-      }, 3000);
+        showWordListPage()
+      }, 3000)
     }
   } else {
-    popup.showAnswer = true;
+    popup.showAnswer = true
   }
-};
+}
 
 const setSelectedAnswer = (value) => {
-  selectedAnswer.value = value;
-};
+  selectedAnswer.value = value
+}
 
 const setButtonCorrect = (optionValue) => {
   if (optionValue === selectedAnswer.value) {
     if (optionValue === answer.value) {
-      return "bg-green-600";
+      return 'bg-green-600'
     } else {
-      return "";
+      return ''
     }
   }
-  return "bg-button-bgColor";
-};
+  return 'bg-button-bgColor'
+}
 </script>
 
 <template>
@@ -402,6 +402,7 @@ const setButtonCorrect = (optionValue) => {
       >
         <div
           class="w-full h-screen flex justify-center items-center bg-black bg-opacity-50"
+          @click.self="closeSetting"
         >
           <div class="relative">
             <div
@@ -411,12 +412,12 @@ const setButtonCorrect = (optionValue) => {
                 <img
                   src="/setting-features/cancel.png"
                   alt="cancel button"
-                  class="w-5 sm:w-8 cursor-pointer"
+                  class="w-5 sm:w-8 cursor-pointer ml-auto"
                   @click="closeSetting"
                 />
 
                 <div
-                  class="text-center text-2xl font-alkatra text-title font-semibold sm:text-6xl"
+                  class="text-center text-5xl font-alkatra text-title font-semibold sm:text-6xl"
                   style="text-shadow: 2px 2px 4px rgba(18, 17, 17, 0.5)"
                 >
                   Setting
@@ -470,7 +471,7 @@ const setButtonCorrect = (optionValue) => {
             :key="index"
             @click="
               () => {
-                if (!isChecking) checkAnswer(option.value);
+                if (!isChecking) checkAnswer(option.value)
               }
             "
             :class="setButtonCorrect(option.value)"
@@ -599,7 +600,7 @@ const setButtonCorrect = (optionValue) => {
                 :key="index"
                 :class="{
                   'text-red-500':
-                    userAns !== categories[currentIndexCate].items[index].word,
+                    userAns !== categories[currentIndexCate].items[index].word
                 }"
                 class="flex font-NotoSansSC font-medium text-lg tracking-title leading-listMobile md:text-xl md:leading-list"
               >
