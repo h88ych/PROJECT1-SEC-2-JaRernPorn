@@ -550,33 +550,36 @@ const setButtonCorrect = (optionValue) => {
   </section>
 
   <!-- Word List Page -->
-  <section class="wordListPage" v-if="allPage.wordListPage">
-    <div class="w-full min-h-screen bg-main-bgColor pt-4 flex justify-center">
-      <img
-        class="size-28 absolute left-5 md:size-36"
-        src="/result-page/frame-top.png"
-        alt="result-deco-top"
-      />
-      <div></div>
-      <img
-        class="size-28 absolute right-5 bottom-3 md:size-36"
-        src="/result-page/frame-bottom.png"
-        alt="result-deco-bottom"
-      />
-
+  <section
+    class="wordListPage w-full min-h-screen bg-main-bgColor pt-4 flex justify-center"
+    v-if="allPage.wordListPage"
+  >
+    <div>
+      <div class="invisible lg:visible">
+        <img
+          class="size-28 absolute left-5 md:size-36"
+          src="/result-page/frame-top.png"
+          alt="result-deco-top"
+        />
+        <img
+          class="size-28 absolute right-5 bottom-3 md:size-36"
+          src="/result-page/frame-bottom.png"
+          alt="result-deco-bottom"
+        />
+      </div>
       <div dir="rtl">
         <img
-          class="size-14 flex hover:scale-110 absolute top-3 right-7 cursor-pointer hover:transition-all duration-300 ease-in-out"
+          class="size-10 flex hover:scale-110 absolute top-3 right-7 cursor-pointer hover:transition-all duration-300 ease-in-out"
           src="/result-page/home button.png"
           alt="home"
           @click="backToHome"
         />
       </div>
 
-      <div class="flex flex-col justify-center gap-4 md:gap-10">
+      <div class="flex flex-col justify-center gap-4 pt-6 md:gap-10">
         <div class="flex flex-col">
           <header
-            class="font-alkatra font-semibold text-title text-7xl text-center md:text-8xl"
+            class="font-alkatra font-semibold text-title text-5xl text-center md:text-7xl"
           >
             Word List
           </header>
