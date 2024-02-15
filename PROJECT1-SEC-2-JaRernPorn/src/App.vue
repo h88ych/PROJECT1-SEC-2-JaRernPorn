@@ -579,7 +579,7 @@ const setButtonCorrect = (optionValue) => {
       <div class="flex flex-col justify-center gap-4 pt-6 md:gap-10">
         <div class="flex flex-col">
           <header
-            class="font-alkatra font-semibold text-title text-5xl text-center md:text-7xl"
+            class="font-alkatra font-semibold text-title text-5xl text-center sm:text-6xl md:text-8xl"
           >
             Word List
           </header>
