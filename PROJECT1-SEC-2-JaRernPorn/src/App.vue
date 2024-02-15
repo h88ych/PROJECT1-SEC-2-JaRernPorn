@@ -376,7 +376,7 @@ const setButtonCorrect = (optionValue) => {
     v-else-if="allPage.playgamePage"
   >
     <div class="mx-auto">
-      <div class="header flex justify-evenly items-center py-6">
+      <div class="header flex justify-around items-center py-6">
         <div class="play md:ml-8 text-center">
           <h1 class="text-4xl text-title lg:text-5xl font-outfit font-bold">
             Category: {{ currentCategory }}
@@ -384,7 +384,7 @@ const setButtonCorrect = (optionValue) => {
         </div>
 
         <div
-          class="setting flex items-center hover:scale-125 hover:transition-all duration-300 ease-in-out"
+          class="setting flex items-center xl:mr-7 hover:scale-125 hover:transition-all duration-300 ease-in-out"
         >
           <img
             src="/play-game/setting.png"
