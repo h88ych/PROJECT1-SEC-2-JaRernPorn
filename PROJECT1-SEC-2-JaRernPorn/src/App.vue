@@ -372,7 +372,7 @@ const setButtonCorrect = (optionValue) => {
 
   <!-- Play Game Page -->
   <section
-    class="playGame h-full w-full bg-main-bgColor"
+    class="playGame h-screen w-full bg-main-bgColor"
     v-else-if="allPage.playgamePage"
   >
     <div class="mx-auto">
