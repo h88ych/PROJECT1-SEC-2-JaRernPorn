@@ -372,10 +372,10 @@ const setButtonCorrect = (optionValue) => {
 
   <!-- Play Game Page -->
   <section
-    class="playGame h-screen w-full bg-main-bgColor"
+    class="playGame "
     v-else-if="allPage.playgamePage"
   >
-    <div class="mx-auto">
+    <div class="min-h-screen w-full bg-main-bgColor">
       <div class="header flex justify-around items-center py-6">
         <div class="play md:ml-8 text-center">
           <h1 class="text-4xl text-title lg:text-5xl font-outfit font-bold">
