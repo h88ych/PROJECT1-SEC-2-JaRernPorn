@@ -375,7 +375,7 @@ const setButtonCorrect = (optionValue) => {
     class="playGame h-full w-full bg-main-bgColor"
     v-else-if="allPage.playgamePage"
   >
-    <div class="mx-auto h-full">
+    <div class="mx-auto">
       <div class="header flex justify-evenly items-center py-6">
         <div class="play md:ml-8 text-center">
           <h1 class="text-4xl text-title lg:text-5xl font-outfit font-bold">
