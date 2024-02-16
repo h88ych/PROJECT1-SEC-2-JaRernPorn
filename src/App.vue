@@ -158,8 +158,6 @@ const shuffle = (array) => {
 const checkAnswer = (selectedOption) => {
   isChecking.value = true
   userAnswer.value.push(selectedOption)
-  console.log(userAnswer.value)
-  console.log(currentIndexItem.value)
 
   if (selectedOption === answer.value) {
     setSelectedAnswer(selectedOption)
