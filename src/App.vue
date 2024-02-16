@@ -76,13 +76,23 @@ const closeSetting = () => {
 }
 
 const restartButton = () => {
-  popup.showEndgame = false
-  allPage.wordListPage = false
   allPage.playgamePage = true
   userAnswer.value = []
   currentIndexItem.value = 0
-  selectedAnswer.value = ''
   closeSetting()
+}
+
+const mainMenuButton = () => {
+  allPage.wordListPage = false
+  allPage.categoryPage = true
+  init()
+}
+
+const homeButton = () => {
+  allPage.playgamePage = false
+  allPage.categoryPage = false
+  allPage.homePage = true
+  init()
 }
 
 const handleNextBtn = () => {
@@ -99,19 +109,6 @@ const handleNextBtn = () => {
       showWordListPage()
     }, 2000)
   }
-}
-
-const mainMenuButton = () => {
-  allPage.wordListPage = false
-  allPage.categoryPage = true
-  init()
-}
-
-const homeButton = () => {
-  allPage.playgamePage = false
-  allPage.categoryPage = false
-  allPage.homePage = true
-  init()
 }
 
 //for play game page
@@ -371,10 +368,7 @@ const setButtonCorrect = (optionValue) => {
   </section>
 
   <!-- Play Game Page -->
-  <section
-    class="playGame "
-    v-else-if="allPage.playgamePage"
-  >
+  <section class="playGame" v-else-if="allPage.playgamePage">
     <div class="min-h-screen w-full bg-main-bgColor">
       <div class="header flex justify-around items-center py-6">
         <div class="play md:ml-8 text-center">
@@ -395,6 +389,7 @@ const setButtonCorrect = (optionValue) => {
         </div>
       </div>
 
+      <!-- Setting button -->
       <section
         id="settingButton"
         v-if="settingButton"
