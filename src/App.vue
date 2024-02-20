@@ -96,7 +96,7 @@ const homeButton = () => {
   init();
 };
 
-const handleNextBtn = () => {
+const nextBtn = () => {
   popup.showAnswer = false;
   isChecking.value = false;
   currentIndexItem.value++;
@@ -502,7 +502,7 @@ const setButtonCorrect = (optionValue) => {
         </div>
         <button
           class="text-sm text-brownColor font-semibold font-alkatra tracking-wider relative right-7 bottom-3 hover:text-answer-fontColor hove:transition duration-150 sm:right-[50px] sm:top-[18px] sm:text-2xl md:text-3xl lg:right-[60px] mobile:text-[20px]"
-          @click="handleNextBtn"
+          @click="nextBtn"
         >
           NEXT
         </button>
