@@ -118,14 +118,7 @@ const currentCategory = computed(() => {
 });
 
 const currentQuiz = computed(() => {
-  if (
-    currentIndexItem.value === categories[currentIndexCate.value].items.length
-  ) {
-    return "";
-  }
-
-  answer.value =
-    categories[currentIndexCate.value].items[currentIndexItem.value].word;
+  answer.value = categories[currentIndexCate.value].items[currentIndexItem.value].word;
   options.value = generateOptions(answer.value);
   return categories[currentIndexCate.value].items[currentIndexItem.value].src;
 });
