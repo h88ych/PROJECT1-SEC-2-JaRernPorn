@@ -459,7 +459,6 @@ const setButtonCorrect = (optionValue) => {
               }
             "
             :class="setButtonCorrect(option.value)"
-            :id="`option-${option.value}`"
             class="flex justify-center items-center bg-button-bgColor text-white font-normal text-2xl h-14 sm:h-20 rounded-md hover:drop-shadow-lg hover:scale-105 transition-all duration-300 ease-in-out"
           >
             {{ option.value }}
