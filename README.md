@@ -9,11 +9,29 @@
 | 65130500113 | มัณฑนา คชรินทร์  | **Tailwind** :<br> - Result Page<br> - Pop-up Wrong Answer <br> **Logic** :<br> -  Change button color when answer is correct|
 | 65130500120 | อภิสรา ชลประสิทธิ์  | **Tailwind** :<br> - Home Page<br> - How to play popup <br> **Logic** :<br> -  Play button link to category page <br> - How to play button show popup of how to play details <br> - Word list page section of your answer|
 
-
-
-
-
 ## List of feature
+
+**Home Feature**
+1. กด Play เพื่อไปหน้า Categories เเละเลือกหมวดคำศัพท์ที่อยากเล่น <br>
+2. กด How to play เพื่อดูวิธีเล่น <br>
+&nbsp;- เป็น Pop up ขึ้นมา เลื่อนดู และสามารถกดปิดที่มุมบนขวาหรือกดที่พื้นที่ว่างบนหน้าจอ
+
+**Categories Feature** <br>
+1. เลือกหมวดคำศัพท์ที่อยากเล่น เมื่อกดไปที่หมวดไหน จะเริ่มที่ข้อเเรกทันที
+
+**Quiz Feature** <br>
+1. ในแต่ละคำถามสามารถเลือกตอบได้ 1 ข้อ <br>
+&nbsp;- เมื่อคำตอบถูก ตัวเลือกนั้นพื้นหลังจะกลายเป็นสีเขียว <br>
+&nbsp;- เมื่อคำตอบผิดจะเเสดง Pop up เฉลยคำตอบที่ถูกต้อง จากนั้นกด Next เพื่อไปข้อถัดไป <br>
+2. ขณะเล่นเกม มี Setting ที่สามารถ <br>
+&nbsp;- กดออกเพื่อไปหน้าหลัก (Home) <br>
+&nbsp;- กดเพื่อเล่นหมวดนี้ใหม่อีกครั้ง (Restart) <br>
+&nbsp;- กดเพื่อเล่นต่อ (Resume) 
+
+**Result Feature** <br>
+1. หน้า Result หรือเฉลยหลังเล่นเกมจบ จะประกอบไปด้วย <br>
+&nbsp;- ฝั่งซ้าย: แสดงคำตอบทั้งหมดที่ผู้ใช้เลือก พร้อมเปลี่ยนสีอักษรให้เป็นสีแดงในข้อที่ผิด เพื่อให้ผู้ใช้จดจำได้ดีขึ้น และจะไม่ผิดในครั้งถัด ๆ ไป <br>
+&nbsp;- ฝั่งขวา: เฉลยศัพท์ในทุกข้อ <br>
 
 ## Instruction
 
