@@ -1,13 +1,13 @@
 # PROJECT1-SEC-2-JaRernPorn
 
 ## Members
-| Student Id | Name  | Responsible |
-| ------------- | ------------- | ------------- |
-| 65130500086 | หทัยทัต แย้มชมชื่น  | **Tailwind** :<br> - Setting<br> - WrongPopup old version<br> - Excellent Popup <br> **Logic** :<br> - all button in setting <br> - main menu & play again button|
-| 65130500103 | ณัฐธิดา รุ่งเรือง  | **Tailwind** :<br> - Play game Page <br> **Logic** :<br> - Display names according to the selected category in play game page <br> -  Show image that match the selected category <br> - Generate options |
-| 65130500109 | ใบตอง แซ่โค้ว  | **Tailwind** :<br> - Category page<br> **Logic** :<br> - Display pop up show correct answer when user selected wrong answer (next button function) <br> - Check answer function |
-| 65130500113 | มัณฑนา คชรินทร์  | **Tailwind** :<br> - Result Page<br> - Pop-up Wrong Answer <br> **Logic** :<br> -  Change button color when answer is correct|
-| 65130500120 | อภิสรา ชลประสิทธิ์  | **Tailwind** :<br> - Home Page<br> - How to play popup <br> **Logic** :<br> -  Play button link to category page <br> - How to play button show popup of how to play details <br> - Word list page section of your answer|
+| Student Id | Name  | Responsible | Percentage |
+| ------------- | ------------- | ------------- | ------------- | 
+| 65130500086 | หทัยทัต แย้มชมชื่น  | **Tailwind** :<br> - Setting<br> - WrongPopup old version<br> - Excellent Popup <br> **Logic** :<br> - all button in setting <br> - main menu & play again button| 100% |
+| 65130500103 | ณัฐธิดา รุ่งเรือง  | **Tailwind** :<br> - Play game Page <br> **Logic** :<br> - Display names according to the selected category in play game page <br> -  Show image that match the selected category <br> - Generate options | 100% |
+| 65130500109 | ใบตอง แซ่โค้ว  | **Tailwind** :<br> - Category page<br> **Logic** :<br> - Display pop up show correct answer when user selected wrong answer (next button function) <br> - Check answer function | 100% |
+| 65130500113 | มัณฑนา คชรินทร์  | **Tailwind** :<br> - Result Page<br> - Pop-up Wrong Answer <br> **Logic** :<br> -  Change button color when answer is correct| 100% |
+| 65130500120 | อภิสรา ชลประสิทธิ์  | **Tailwind** :<br> - Home Page<br> - How to play popup <br> **Logic** :<br> -  Play button link to category page <br> - How to play button show popup of how to play details <br> - Word list page section of your answer| 100% |
 
 ## List of feature
 
@@ -28,17 +28,35 @@
 &nbsp;- กดเพื่อเล่นหมวดนี้ใหม่อีกครั้ง (Restart) <br>
 &nbsp;- กดเพื่อเล่นต่อ (Resume) 
 
-**Result Feature** <br>
+**Result Feature** 
 1. หน้า Result หรือเฉลยหลังเล่นเกมจบ จะประกอบไปด้วย <br>
 &nbsp;- ฝั่งซ้าย: แสดงคำตอบทั้งหมดที่ผู้ใช้เลือก พร้อมเปลี่ยนสีอักษรให้เป็นสีแดงในข้อที่ผิด เพื่อให้ผู้ใช้จดจำได้ดีขึ้น และจะไม่ผิดในครั้งถัด ๆ ไป <br>
 &nbsp;- ฝั่งขวา: เฉลยศัพท์ในทุกข้อ <br>
 
-## Instruction
+## How to play
+1. กดปุ่ม "Play" เพื่อเข้าสู่หน้าเลือกหมวดหมู่ที่ต้องการเล่น  <br>
+2. สามารถกดปุ่ม "How to play" เพื่อดูวิธีการเล่น จากนั้นเลือกหมวดหมู่คำศัพท์ที่ต้องการฝึก  <br>
+3. ถ้าต้องการกลับไปหน้าหลัก ให้กดที่ลูกศรด้านซ้ายบน  <br>
+4. เมื่อเข้าสู่หน้าเล่นเกม ให้เลือกคำศัพท์ที่ตรงกับรูปภาพ โดยกดที่คำศัพท์ที่คิดว่าถูกต้อง  <br>
+5. เมื่อเกมจบแล้ว จะมีการทบทวนคำศัพท์ที่เลือก และแสดงเฉลยคำตอบที่ถูกต้อง  <br>
+6. ผู้ใช้สามารถกลับไปหน้าเลือกหมวดคำศัพท์โดยการกดปุ่ม "Main Menu" และเริ่มเล่นใหม่อีกครั้งโดยการกดปุ่ม "Play Again"  <br>
+
 
 ## Demonstration video
-https://drive.google.com/file/d/15xIHl8XU7Qjq98oy2K2R5GSyswI8JOs2/view?usp=sharing
+[![](https://markdown-videos-api.jorgenkh.no/youtube/oWyXsmAq-B8)](https://youtu.be/oWyXsmAq-B8)
 
-## Source of reference information
-
-**Our project** : Chinese Vocab Application <br>
+## Source of reference information 
+1. Fruits image :
+   - https://shorturl.at/muMQR
+   - https://shorturl.at/CHIK9
+2. Animals image :
+   - https://shorturl.at/ijy09
+   - https://shorturl.at/DF139
+3. Family image :
+   - https://rb.gy/3spf75
+4. Number image :
+   - https://rb.gy/5j491h
+5. Color image :
+   - https://rb.gy/6yd4i4
+## Figma
 :pushpin: https://www.figma.com/file/ouMBsDsGoVcC8MlF3sSfUe/Chinese-Vocab?type=design&node-id=5%3A81&mode=design&t=7tbNDhWAO3kqcPgi-1
