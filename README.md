@@ -28,12 +28,12 @@
 &nbsp;- กดเพื่อเล่นหมวดนี้ใหม่อีกครั้ง (Restart) <br>
 &nbsp;- กดเพื่อเล่นต่อ (Resume) 
 
-**Result Feature** <br>
+**Result Feature** 
 1. หน้า Result หรือเฉลยหลังเล่นเกมจบ จะประกอบไปด้วย <br>
 &nbsp;- ฝั่งซ้าย: แสดงคำตอบทั้งหมดที่ผู้ใช้เลือก พร้อมเปลี่ยนสีอักษรให้เป็นสีแดงในข้อที่ผิด เพื่อให้ผู้ใช้จดจำได้ดีขึ้น และจะไม่ผิดในครั้งถัด ๆ ไป <br>
 &nbsp;- ฝั่งขวา: เฉลยศัพท์ในทุกข้อ <br>
 
-## Instruction
+## How to play
 1. กดปุ่ม "Play" เพื่อเข้าสู่หน้าเลือกหมวดหมู่ที่ต้องการเล่น  <br>
 2. สามารถกดปุ่ม "How to play" เพื่อดูวิธีการเล่น จากนั้นเลือกหมวดหมู่คำศัพท์ที่ต้องการฝึก  <br>
 3. ถ้าต้องการกลับไปหน้าหลัก ให้กดที่ลูกศรด้านซ้ายบน  <br>
@@ -45,7 +45,18 @@
 ## Demonstration video
 [![](https://markdown-videos-api.jorgenkh.no/youtube/oWyXsmAq-B8)](https://youtu.be/oWyXsmAq-B8)
 
-## Source of reference information
-
-**Our project** : Chinese Vocab Application <br>
+## Source of reference information 
+1. Fruits image :
+   - https://shorturl.at/muMQR
+   - https://shorturl.at/CHIK9
+2. Animals image :
+   - https://shorturl.at/ijy09
+   - https://shorturl.at/DF139
+3. Family image :
+   - https://rb.gy/3spf75
+4. Number image :
+   - https://rb.gy/5j491h
+5. Color image :
+   - https://rb.gy/6yd4i4
+## Figma
 :pushpin: https://www.figma.com/file/ouMBsDsGoVcC8MlF3sSfUe/Chinese-Vocab?type=design&node-id=5%3A81&mode=design&t=7tbNDhWAO3kqcPgi-1
