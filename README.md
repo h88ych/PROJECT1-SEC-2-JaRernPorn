@@ -36,7 +36,7 @@
 ## Instruction
 
 ## Demonstration video
-https://drive.google.com/file/d/15xIHl8XU7Qjq98oy2K2R5GSyswI8JOs2/view?usp=sharing
+[![](https://markdown-videos-api.jorgenkh.no/youtube/oWyXsmAq-B8)](https://youtu.be/oWyXsmAq-B8)
 
 ## Source of reference information
 
